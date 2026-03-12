@@ -1,0 +1,35 @@
+# 服务器配置
+server:
+  port: 9999
+  servlet:
+    context-path: /
+
+# 应用配置
+spring:
+  application:
+    name: data-processing-middleware
+
+  # 文件上传配置
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+# 文件存储路径配置
+file:
+  upload:
+    path: ./uploads
+  output:
+    path: ./outputs
+
+# 日志配置
+logging:
+  level:
+    root: INFO
+    com.middleware.org: DEBUG
+  file:
+    name: logs/application.log
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n'
+    file: '%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n'
