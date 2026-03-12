@@ -1,56 +1,26 @@
 package com.middleware.org.cleaner;
 
-import com.middleware.org.model.CleanRule;
 import com.middleware.org.model.DataRecord;
+import com.middleware.org.model.ProcessedData;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.Map;
 
 /**
  * 缺失值处理器
  */
 @Component
-public class MissingValueCleaner implements IDataCleaner {
+public class MissingValueCleaner {
 
-    @Override
-    public List<DataRecord> clean(List<DataRecord> records, CleanRule rule) {
-        if (!rule.isHandleMissingValue()) {
-            return records;
-        }
-
-        String strategy = rule.getMissingValueStrategy();
-
-        for (DataRecord record : records) {
+    public void clean(ProcessedData processedData) {
+        for (DataRecord record : processedData.getRecords()) {
             Map<String, Object> fields = record.getFields();
             for (Map.Entry<String, Object> entry : fields.entrySet()) {
                 if (entry.getValue() == null || entry.getValue().toString().trim().isEmpty()) {
-                    handleMissingValue(entry, strategy);
+                    entry.setValue("");
+                    record.setValid(false);
                 }
             }
         }
-
-        return records;
-    }
-
-    private void handleMissingValue(Map.Entry<String, Object> entry, String strategy) {
-        switch (strategy) {
-            case "fill_default":
-                entry.setValue("");
-                break;
-            case "fill_null":
-                entry.setValue(null);
-                break;
-            case "fill_zero":
-                entry.setValue("0");
-                break;
-            default:
-                entry.setValue("");
-        }
-    }
-
-    @Override
-    public String getCleanerName() {
-        return "MissingValueCleaner";
     }
 }

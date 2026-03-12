@@ -1,8 +1,12 @@
 package com.middleware.org.controller;
 
+import com.middleware.org.common.ApiResponse;
 import com.middleware.org.model.LogEntry;
 import com.middleware.org.service.ILogService;
-import com.middleware.org.service.ServiceFactory;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -11,55 +15,31 @@ import java.util.Map;
 
 /**
  * 日志管理控制器
- * 提供日志查询相关的REST API接口
  */
+@Tag(name = "日志管理", description = "任务日志查询接口")
 @RestController
-@RequestMapping("/api/logs")
+@RequestMapping("/api/log")
 public class LogController {
 
-    private final ILogService logService;
-
-    public LogController() {
-        this.logService = ServiceFactory.getInstance().getLogService();
-    }
+    @Autowired
+    private ILogService logService;
 
     /**
-     * 查询日志
-     * GET /api/logs
+     * 查询任务日志
+     * GET /api/log/{taskId}
      */
-    @GetMapping
-    public Map<String, Object> queryLogs(
-            @RequestParam(required = false) Long startTime,
-            @RequestParam(required = false) Long endTime,
-            @RequestParam(required = false) String level) {
-        Map<String, Object> response = new HashMap<>();
+    @Operation(summary = "查询任务日志", description = "查询指定任务的执行日志")
+    @GetMapping("/{taskId}")
+    public ApiResponse<Map<String, Object>> queryLogs(
+            @Parameter(description = "任务ID") @PathVariable String taskId) {
         try {
-            List<LogEntry> logs = logService.queryLogs(startTime, endTime, level);
-            response.put("success", true);
-            response.put("data", logs);
-            response.put("total", logs.size());
+            List<LogEntry> logs = logService.queryLogs(taskId);
+            Map<String, Object> data = new HashMap<>();
+            data.put("logs", logs);
+            data.put("total", logs.size());
+            return ApiResponse.success(data);
         } catch (Exception e) {
-            response.put("success", false);
-            response.put("message", "查询日志失败: " + e.getMessage());
+            return ApiResponse.error("查询日志失败: " + e.getMessage());
         }
-        return response;
-    }
-
-    /**
-     * 清理过期日志
-     * DELETE /api/logs/expired
-     */
-    @DeleteMapping("/expired")
-    public Map<String, Object> cleanExpiredLogs(@RequestParam(defaultValue = "30") int retentionDays) {
-        Map<String, Object> response = new HashMap<>();
-        try {
-            logService.cleanExpiredLogs(retentionDays);
-            response.put("success", true);
-            response.put("message", "清理过期日志成功");
-        } catch (Exception e) {
-            response.put("success", false);
-            response.put("message", "清理日志失败: " + e.getMessage());
-        }
-        return response;
     }
 }

@@ -4,344 +4,677 @@
 
 ### 1. TaskContext.java
 **功能**: 任务上下文，包含任务执行所需的所有信息
+
+**字段**:
 ```java
-- taskId: String              // 任务ID
-- taskName: String            // 任务名称
-- inputFilePath: String       // 输入文件路径
-- outputFilePath: String      // 输出文件路径
-- fileType: String            // 文件类型
-- parameters: Map             // 扩展参数
+- taskId: String                    // 任务ID
+- taskName: String                  // 任务名称
+- inputFilePath: String             // 输入文件路径
+- outputFilePath: String            // 输出文件路径
+- fileType: String                  // 文件类型（csv/xlsx/json）
+- status: TaskStatus                // 任务状态
+- processedData: ProcessedData      // 处理后的数据
+- statistics: DataStatistics        // 统计信息
+- parameters: Map<String, Object>   // 扩展参数
+```
+
+**方法**:
+```java
++ getTaskId(): String
++ setTaskId(taskId: String): void
++ getStatus(): TaskStatus
++ setStatus(status: TaskStatus): void
++ getProcessedData(): ProcessedData
++ setProcessedData(data: ProcessedData): void
++ addParameter(key: String, value: Object): void
++ getParameter(key: String): Object
 ```
 
 ### 2. TaskResult.java
 **功能**: 任务执行结果
+
+**字段**:
 ```java
-- taskId: String              // 任务ID
-- status: TaskStatus          // 任务状态
-- startTime: Date             // 开始时间
-- endTime: Date               // 结束时间
-- message: String             // 结果消息
-- processedData: ProcessedData // 处理后的数据
+- taskId: String                    // 任务ID
+- taskName: String                  // 任务名称
+- status: String                    // 任务状态
+- message: String                   // 结果消息
+- startTime: Long                   // 开始时间
+- endTime: Long                     // 结束时间
+- inputFilePath: String             // 输入文件路径
+- outputFilePath: String            // 输出文件路径
+- processedRecords: Integer         // 处理记录数
+- errorRecords: Integer             // 错误记录数
 ```
 
 ### 3. TaskStatus.java (枚举)
 **功能**: 任务状态枚举
+
+**枚举值**:
 ```java
-- WAITING    // 等待中
-- RUNNING    // 运行中
-- SUCCESS    // 成功
-- FAILED     // 失败
+UPLOADED("已上传")       // 文件已上传
+PARSING("解析中")        // 正在解析数据
+CLEANING("清洗中")       // 正在清洗数据
+NORMALIZING("标准化中")  // 正在标准化数据
+EXPORTING("导出中")      // 正在导出数据
+FINISHED("已完成")       // 任务完成
+FAILED("失败")           // 任务失败
 ```
 
 ### 4. DataRecord.java
 **功能**: 数据记录，表示一行数据
+
+**字段**:
 ```java
-- fields: Map<String, Object>  // 字段映射
-+ addField(key, value)         // 添加字段
-+ getField(key)                // 获取字段
+- recordId: Long                    // 记录ID
+- fields: Map<String, Object>       // 字段映射
+- sourceType: String                // 数据源类型
+- timestamp: Long                   // 时间戳
+- valid: boolean                    // 是否有效
+```
+
+**方法**:
+```java
++ addField(key: String, value: Object): void
++ getField(key: String): Object
++ isValid(): boolean
++ setValid(valid: boolean): void
++ getData(): Map<String, Object>
 ```
 
 ### 5. ProcessedData.java
 **功能**: 处理后的数据集合
+
+**字段**:
 ```java
-- records: List<DataRecord>    // 数据记录列表
-- totalCount: int              // 总记录数
-- validCount: int              // 有效记录数
-- invalidCount: int            // 无效记录数
+- records: List<DataRecord>         // 数据记录列表
+- totalCount: int                   // 总记录数
+- validCount: int                   // 有效记录数
+- invalidCount: int                 // 无效记录数
 ```
 
-### 6. CleanRule.java
+**方法**:
+```java
++ getRecords(): List<DataRecord>
++ setRecords(records: List<DataRecord>): void
++ addRecord(record: DataRecord): void
++ getTotalCount(): int
++ setTotalCount(count: int): void
+```
+
+### 6. DataStatistics.java
+**功能**: 数据统计信息
+
+**字段**:
+```java
+- taskId: String                    // 任务ID
+- totalRecords: long                // 总记录数
+- validRecords: long                // 有效记录数
+- invalidRecords: long              // 无效记录数
+- missingValues: long               // 缺失值数量
+- processingTimeMs: long            // 处理时间（毫秒）
+- startTime: String                 // 开始时间
+- endTime: String                   // 结束时间
+```
+
+### 7. TaskProgress.java
+**功能**: 任务进度信息
+
+**字段**:
+```java
+- taskId: String                    // 任务ID
+- status: TaskStatus                // 任务状态
+- percentage: int                   // 进度百分比（0-100）
+- currentStage: String              // 当前阶段
+- message: String                   // 进度消息
+- updateTime: long                  // 更新时间
+```
+
+### 8. CleanRule.java
 **功能**: 数据清洗规则配置
+
+**字段**:
 ```java
-- handleMissingValue: boolean          // 是否处理缺失值
-- missingValueStrategy: String         // 缺失值处理策略
-- fieldTypeMap: Map<String, String>    // 字段类型映射
-- fieldFormatMap: Map<String, String>  // 字段格式映射
-- removeInvalidRecords: boolean        // 是否删除无效记录
-- normalizeData: boolean               // 是否标准化数据
+- handleMissingValue: boolean               // 是否处理缺失值
+- missingValueStrategy: String              // 缺失值处理策略
+- fieldTypeMap: Map<String, String>         // 字段类型映射
+- fieldFormatMap: Map<String, String>       // 字段格式映射
+- removeInvalidRecords: boolean             // 是否删除无效记录
+- normalizeData: boolean                    // 是否标准化数据
 ```
 
-### 7. FileMetadata.java
+### 9. FileMetadata.java
 **功能**: 文件元数据
+
+**字段**:
 ```java
-- fileName: String            // 文件名
-- fileSize: long              // 文件大小
-- fileType: String            // 文件类型
-- uploadTime: Date            // 上传时间
+- fileName: String                  // 文件名
+- fileSize: long                    // 文件大小
+- fileType: String                  // 文件类型
+- uploadTime: Date                  // 上传时间
 ```
 
-### 8. ValidationResult.java
+### 10. ValidationResult.java
 **功能**: 数据校验结果
+
+**字段**:
 ```java
-- isValid: boolean            // 是否有效
-- errorMessages: List<String> // 错误消息列表
+- valid: boolean                    // 是否有效
+- totalRecords: int                 // 总记录数
+- validRecords: int                 // 有效记录数
+- invalidRecords: int               // 无效记录数
+- warnings: List<String>            // 警告消息列表
 ```
 
-### 9. LogEntry.java
+### 11. LogEntry.java
 **功能**: 日志条目
+
+**字段**:
 ```java
-- taskId: String              // 任务ID
-- level: String               // 日志级别
-- message: String             // 日志消息
-- timestamp: Date             // 时间戳
+- level: String                     // 日志级别（INFO/WARN/ERROR）
+- message: String                   // 日志消息
+- timestamp: long                   // 时间戳
+- threadName: String                // 线程名称
+- exceptionMessage: String          // 异常消息
+- stackTrace: String                // 堆栈跟踪
 ```
 
 ## 二、服务接口层 (service)
 
 ### 1. ITaskFlowControlService.java
 **功能**: 任务流程控制服务
+
+**方法**:
 ```java
-+ startTask(TaskContext): String           // 启动任务
-+ stopTask(taskId): boolean                // 停止任务
-+ getTaskStatus(taskId): TaskResult        // 查询任务状态
-+ listAllTasks(): List<TaskResult>         // 获取所有任务
++ createTask(taskContext: TaskContext): String
+    // 创建任务，返回任务ID
+
++ startTask(taskId: String): void
+    // 启动任务（异步执行）
+
++ getTaskStatus(taskId: String): TaskStatus
+    // 查询任务状态
+
++ listAllTasks(): List<TaskResult>
+    // 获取所有任务列表
+
++ stopTask(taskId: String): boolean
+    // 停止任务
 ```
 
-### 2. IFilePreprocessService.java
-**功能**: 文件预处理服务
-```java
-+ uploadFile(file): FileMetadata           // 上传文件
-+ validateFile(filePath): ValidationResult // 验证文件
-+ identifyFileType(filePath): String       // 识别文件类型
-```
-
-### 3. IDataParseService.java
+### 2. IDataParseService.java
 **功能**: 数据解析服务
+
+**方法**:
 ```java
-+ parse(filePath, fileType): List<DataRecord>  // 解析文件
++ parse(taskContext: TaskContext): void
+    // 解析数据文件，结果存入taskContext
 ```
 
-### 4. IDataCleanService.java
+### 3. IDataCleanService.java
 **功能**: 数据清洗服务
+
+**方法**:
 ```java
-+ clean(records, rule): List<DataRecord>   // 清洗数据
++ clean(taskContext: TaskContext): void
+    // 清洗数据
+
++ normalize(taskContext: TaskContext): void
+    // 标准化数据
 ```
 
-### 5. IDataOutputService.java
+### 4. IDataOutputService.java
 **功能**: 数据输出服务
+
+**方法**:
 ```java
-+ export(data, outputPath, format): void   // 导出数据
++ export(taskContext: TaskContext): void
+    // 导出数据到指定格式
 ```
 
-### 6. ILogService.java
+### 5. ILogService.java
 **功能**: 日志服务
+
+**方法**:
 ```java
-+ log(taskId, level, message): void        // 记录日志
-+ getTaskLogs(taskId): List<LogEntry>      // 获取任务日志
-+ getErrorLogs(): List<LogEntry>           // 获取错误日志
++ info(taskId: String, message: String): void
+    // 记录信息日志
+
++ warn(taskId: String, message: String): void
+    // 记录警告日志
+
++ error(taskId: String, message: String): void
+    // 记录错误日志
+
++ queryLogs(taskId: String): List<LogEntry>
+    // 查询任务日志
 ```
 
 ## 三、数据解析器 (parser)
 
 ### 1. IDataParser.java (接口)
 **功能**: 数据解析器统一接口
+
+**方法**:
 ```java
-+ parse(filePath): List<DataRecord>        // 解析文件
-+ getSupportedFileType(): String           // 获取支持的文件类型
++ parse(filePath: String): ProcessedData throws Exception
+    // 解析文件，返回处理后的数据
+
++ getSupportedFileType(): String
+    // 获取支持的文件类型
 ```
 
 ### 2. CsvParser.java
 **功能**: CSV文件解析器
-- 读取CSV文件
-- 解析表头和数据行
-- 转换为DataRecord列表
+
+**实现细节**:
+- 使用BufferedReader逐行读取
+- 第一行作为表头
+- 将每行数据转换为DataRecord
+- 返回ProcessedData对象
+
+**关键代码**:
+```java
+@Component
+public class CsvParser implements IDataParser {
+    @Override
+    public ProcessedData parse(String filePath) throws Exception {
+        // 读取CSV文件
+        // 解析表头和数据行
+        // 转换为DataRecord列表
+        // 返回ProcessedData
+    }
+
+    @Override
+    public String getSupportedFileType() {
+        return "csv";
+    }
+}
+```
 
 ### 3. ExcelParser.java
 **功能**: Excel文件解析器
+
+**实现细节**:
 - 使用Apache POI读取Excel
 - 支持.xlsx格式
-- 处理多种单元格类型
+- 处理多种单元格类型（字符串、数字、日期、布尔值）
+- 第一行作为表头
+
+**关键代码**:
+```java
+@Component
+public class ExcelParser implements IDataParser {
+    @Override
+    public ProcessedData parse(String filePath) throws Exception {
+        // 使用XSSFWorkbook读取Excel
+        // 获取第一个Sheet
+        // 解析表头和数据行
+        // 返回ProcessedData
+    }
+
+    @Override
+    public String getSupportedFileType() {
+        return "xlsx";
+    }
+}
+```
 
 ### 4. JsonParser.java
 **功能**: JSON文件解析器
-- 使用Jackson解析JSON
+
+**实现细节**:
+- 使用Jackson ObjectMapper解析JSON
 - 支持数组格式的JSON数据
-- 转换为统一的DataRecord格式
+- 将JSON对象转换为DataRecord
+
+**关键代码**:
+```java
+@Component
+public class JsonParser implements IDataParser {
+    private final ObjectMapper objectMapper = new ObjectMapper();
+
+    @Override
+    public ProcessedData parse(String filePath) throws Exception {
+        // 使用ObjectMapper读取JSON
+        // 转换为DataRecord列表
+        // 返回ProcessedData
+    }
+
+    @Override
+    public String getSupportedFileType() {
+        return "json";
+    }
+}
+```
 
 ### 5. ParserFactory.java
 **功能**: 解析器工厂
+
+**实现细节**:
+- Spring自动注入所有IDataParser实现
 - 根据文件类型返回对应的解析器
 - 支持动态注册新的解析器
 
-## 四、数据清洗器 (cleaner)
-
-### 1. IDataCleaner.java (接口)
-**功能**: 数据清洗器统一接口
+**关键代码**:
 ```java
-+ clean(records, rule): List<DataRecord>   // 清洗数据
-+ getCleanerName(): String                 // 获取清洗器名称
+@Component
+public class ParserFactory {
+    private final Map<String, IDataParser> parserMap;
+
+    @Autowired
+    public ParserFactory(List<IDataParser> parsers) {
+        // 自动注册所有解析器
+    }
+
+    public IDataParser getParser(String fileType) {
+        // 根据文件类型返回解析器
+    }
+}
 ```
 
-### 2. MissingValueCleaner.java
+## 四、数据清洗器 (cleaner)
+
+### 1. MissingValueCleaner.java
 **功能**: 缺失值处理器
-- 检测空值和null
-- 支持多种填充策略：默认值、null、0
 
-### 3. FormatValidator.java
+**处理策略**:
+- 检测null值和空字符串
+- 填充为空字符串
+- 标记记录为无效
+
+**关键代码**:
+```java
+@Component
+public class MissingValueCleaner {
+    public void clean(ProcessedData processedData) {
+        // 遍历所有记录
+        // 检查缺失值
+        // 填充并标记
+    }
+}
+```
+
+### 2. FormatValidator.java
 **功能**: 格式校验器
-- 校验字段类型（数字、邮箱等）
-- 标记或删除无效记录
 
-### 4. DataNormalizer.java
+**校验规则**:
+- 检查空值
+- 标记无效记录
+
+**关键代码**:
+```java
+@Component
+public class FormatValidator {
+    public void clean(ProcessedData processedData) {
+        // 遍历所有记录
+        // 校验格式
+        // 标记无效记录
+    }
+}
+```
+
+### 3. DataNormalizer.java
 **功能**: 数据标准化处理器
+
+**标准化规则**:
+- 去除首尾空格
 - 去除多余空格
 - 统一字符串格式
 
-### 5. CleanerChain.java
-**功能**: 清洗链
-- 按顺序执行多个清洗器
-- 责任链模式实现
+**关键代码**:
+```java
+@Component
+public class DataNormalizer {
+    public void normalize(ProcessedData processedData) {
+        // 遍历所有记录
+        // 标准化字符串字段
+    }
+}
+```
+
+### 4. CleanerChain.java
+**功能**: 清洗链（责任链模式）
+
+**执行流程**:
+1. MissingValueCleaner - 处理缺失值
+2. FormatValidator - 格式校验
+3. DataNormalizer - 数据标准化
+
+**关键代码**:
+```java
+@Component
+public class CleanerChain {
+    @Autowired
+    private MissingValueCleaner missingValueCleaner;
+
+    @Autowired
+    private FormatValidator formatValidator;
+
+    @Autowired
+    private DataNormalizer dataNormalizer;
+
+    public void clean(ProcessedData processedData) {
+        missingValueCleaner.clean(processedData);
+        formatValidator.clean(processedData);
+    }
+
+    public void normalize(ProcessedData processedData) {
+        dataNormalizer.normalize(processedData);
+    }
+}
+```
 
 ## 五、数据导出器 (exporter)
 
 ### 1. IDataExporter.java (接口)
 **功能**: 数据导出器统一接口
+
+**方法**:
 ```java
-+ export(data, outputPath): void           // 导出数据
-+ getSupportedFormat(): String             // 获取支持的格式
++ export(data: ProcessedData, outputPath: String): void throws Exception
+    // 导出数据到指定路径
+
++ getSupportedFormat(): String
+    // 获取支持的格式
 ```
 
 ### 2. CsvExporter.java
 **功能**: CSV导出器
-- 将ProcessedData导出为CSV格式
+
+**实现细节**:
+- 使用BufferedWriter写入CSV
+- 第一行写入表头
+- 逐行写入数据
 
 ### 3. ExcelExporter.java
 **功能**: Excel导出器
-- 使用Apache POI生成Excel文件
+
+**实现细节**:
+- 使用Apache POI生成Excel
+- 创建Sheet和Row
+- 写入表头和数据
 
 ### 4. JsonExporter.java
 **功能**: JSON导出器
-- 使用Jackson生成JSON文件
+
+**实现细节**:
+- 使用Jackson ObjectMapper
+- 格式化输出JSON
+- 美化打印
 
 ### 5. ExporterFactory.java
 **功能**: 导出器工厂
+
+**实现细节**:
+- Spring自动注入所有IDataExporter实现
 - 根据输出格式返回对应的导出器
 
-## 六、控制器层 (controller)
+## 六、任务执行模块 (task)
+
+### 1. TaskExecutor.java
+**功能**: 异步任务执行器
+
+**执行流程**:
+```java
+@Component
+public class TaskExecutor {
+    @Async("taskExecutor")
+    public void executeTask(TaskContext taskContext) {
+        // 1. 数据解析阶段
+        progressService.updateProgress(taskId, PARSING);
+        dataParseService.parse(taskContext);
+
+        // 2. 数据清洗阶段
+        progressService.updateProgress(taskId, CLEANING);
+        dataCleanService.clean(taskContext);
+
+        // 3. 数据标准化阶段
+        progressService.updateProgress(taskId, NORMALIZING);
+        dataCleanService.normalize(taskContext);
+
+        // 4. 数据统计阶段
+        statisticsService.generateStatistics(taskContext);
+
+        // 5. 数据导出阶段
+        progressService.updateProgress(taskId, EXPORTING);
+        dataOutputService.export(taskContext);
+
+        // 6. 任务完成
+        progressService.updateProgress(taskId, FINISHED);
+    }
+}
+```
+
+### 2. TaskThreadPoolConfig.java
+**功能**: 线程池配置
+
+**配置参数**:
+```java
+@Configuration
+public class TaskThreadPoolConfig {
+    @Bean(name = "taskExecutor")
+    public Executor taskExecutor() {
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        executor.setCorePoolSize(5);        // 核心线程数
+        executor.setMaxPoolSize(10);        // 最大线程数
+        executor.setQueueCapacity(100);     // 队列容量
+        executor.setKeepAliveSeconds(60);   // 线程空闲时间
+        executor.setThreadNamePrefix("task-executor-");
+        return executor;
+    }
+}
+```
+
+## 七、其他核心模块
+
+### 1. StatisticsService.java
+**功能**: 数据统计服务
+
+**统计内容**:
+- 总记录数
+- 有效记录数
+- 无效记录数
+- 缺失值数量
+- 处理时间
+
+### 2. ProgressService.java
+**功能**: 进度监控服务
+
+**进度阶段**:
+- UPLOADED (10%)
+- PARSING (30%)
+- CLEANING (50%)
+- NORMALIZING (70%)
+- EXPORTING (90%)
+- FINISHED (100%)
+
+### 3. TaskRepository.java
+**功能**: 任务数据仓库
+
+**存储方式**:
+- 使用ConcurrentHashMap存储任务
+- 线程安全的读写操作
+
+### 4. LogServiceImpl.java
+**功能**: 日志服务实现
+
+**日志级别**:
+- INFO: 信息日志
+- WARN: 警告日志
+- ERROR: 错误日志
+
+## 八、控制器层 (controller)
 
 ### 1. TaskController.java
-**功能**: 任务管理接口
+**REST API**:
 ```java
-POST   /api/task/create      // 创建任务
-POST   /api/task/start/{id}  // 启动任务
-GET    /api/task/status/{id} // 查询状态
-GET    /api/task/list        // 任务列表
+@RestController
+@RequestMapping("/api/task")
+public class TaskController {
+    POST /api/task/create      // 创建任务
+    POST /api/task/start/{id}  // 启动任务
+    GET  /api/task/status/{id} // 查询状态
+    GET  /api/task/list        // 任务列表
+    POST /api/task/stop/{id}   // 停止任务
+}
 ```
 
 ### 2. FileController.java
-**功能**: 文件管理接口
+**REST API**:
 ```java
-POST   /api/file/upload      // 上传文件
-GET    /api/file/download/{id} // 下载结果
+@RestController
+@RequestMapping("/api/file")
+public class FileController {
+    POST /api/file/upload         // 上传文件
+    GET  /api/file/download/{id}  // 下载结果
+}
 ```
 
-### 3. DataController.java
-**功能**: 数据处理接口
+### 3. LogController.java
+**REST API**:
 ```java
-POST   /api/data/parse       // 数据解析
-POST   /api/data/clean       // 数据清洗
-POST   /api/data/export      // 数据导出
+@RestController
+@RequestMapping("/api/log")
+public class LogController {
+    GET /api/log/{taskId}  // 查询任务日志
+}
 ```
 
-### 4. LogController.java
-**功能**: 日志查询接口
-```java
-GET    /api/log/{taskId}     // 查询任务日志
-GET    /api/log/error        // 查询错误日志
+## 九、完整数据处理流程
+
 ```
-
-## 七、异常处理 (exception)
-
-### 1. FileProcessException.java
-**功能**: 文件处理异常
-
-### 2. DataParseException.java
-**功能**: 数据解析异常
-
-### 3. DataCleanException.java
-**功能**: 数据清洗异常
-
-### 4. GlobalExceptionHandler.java
-**功能**: 全局异常处理器
-- 统一处理各类异常
-- 返回标准错误响应
-
-## 八、工具类 (util)
-
-### 1. FileUtil.java
-**功能**: 文件工具类
-```java
-+ getFileExtension(fileName): String       // 获取文件扩展名
-+ isFileExists(filePath): boolean          // 检查文件是否存在
-+ getFileSize(filePath): long              // 获取文件大小
-```
-
-### 2. DateUtil.java
-**功能**: 日期工具类
-```java
-+ formatNow(): String                      // 格式化当前时间
-+ format(date, pattern): String            // 格式化日期
-```
-
-### 3. ValidationUtil.java
-**功能**: 校验工具类
-```java
-+ isEmail(email): boolean                  // 校验邮箱
-+ isNumber(str): boolean                   // 校验数字
-+ isEmpty(str): boolean                    // 检查空字符串
-```
-
-## 九、配置类 (config)
-
-### 1. WebConfig.java
-**功能**: Web配置
-- 配置CORS跨域
-- 配置拦截器
-
-### 2. FileStorageConfig.java
-**功能**: 文件存储配置
-- 配置上传路径
-- 配置输出路径
-- 自动创建目录
-
-## 十、核心流程
-
-### 完整数据处理流程
-```
-1. 用户上传文件 (FileController)
+1. 用户上传文件或创建任务
    ↓
-2. 文件预处理 (FilePreprocessService)
-   - 文件类型识别
-   - 文件合法性检查
-   ↓
-3. 创建任务 (TaskController)
+2. TaskController.createTask()
    - 生成任务ID
-   - 初始化任务上下文
+   - 初始化TaskContext
+   - 保存到TaskRepository
    ↓
-4. 启动任务 (TaskFlowControlService)
+3. TaskController.startTask()
+   - 调用TaskExecutor.executeTask()
    ↓
-5. 数据解析 (DataParseService)
-   - ParserFactory获取解析器
-   - 解析为DataRecord列表
+4. TaskExecutor异步执行
+   ├─ 阶段1: 数据解析 (PARSING)
+   │  └─ ParserFactory → IDataParser.parse()
+   ├─ 阶段2: 数据清洗 (CLEANING)
+   │  └─ CleanerChain.clean()
+   ├─ 阶段3: 数据标准化 (NORMALIZING)
+   │  └─ CleanerChain.normalize()
+   ├─ 阶段4: 数据统计
+   │  └─ StatisticsService.generateStatistics()
+   └─ 阶段5: 数据导出 (EXPORTING)
+      └─ ExporterFactory → IDataExporter.export()
    ↓
-6. 数据清洗 (DataCleanService)
-   - CleanerChain执行清洗
-   - 缺失值处理
-   - 格式校验
-   - 数据标准化
+5. 更新任务状态为FINISHED
    ↓
-7. 数据输出 (DataOutputService)
-   - ExporterFactory获取导出器
-   - 导出为指定格式
-   ↓
-8. 返回结果
-   - 更新任务状态
-   - 记录日志
+6. 返回处理结果
 ```
 
-## 十一、设计模式应用
+## 十、设计模式总结
 
 1. **工厂模式**: ParserFactory, ExporterFactory
-2. **策略模式**: IDataParser, IDataCleaner, IDataExporter
+2. **策略模式**: IDataParser, IDataExporter
 3. **责任链模式**: CleanerChain
-4. **单例模式**: Spring Bean管理
+4. **依赖注入**: Spring IoC容器管理所有Bean
+5. **异步模式**: @Async注解实现异步任务执行

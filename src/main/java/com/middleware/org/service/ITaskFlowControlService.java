@@ -2,19 +2,42 @@ package com.middleware.org.service;
 
 import com.middleware.org.model.TaskContext;
 import com.middleware.org.model.TaskResult;
+import com.middleware.org.model.TaskStatus;
+
+import java.util.List;
+import java.util.Map;
 
 /**
- * 任务启动与流程控制接口
- * 负责统一管理数据处理任务的执行流程
+ * 任务流程控制服务接口
  */
 public interface ITaskFlowControlService {
 
     /**
-     * 启动任务
+     * 创建任务
      * @param taskContext 任务上下文
      * @return 任务ID
      */
-    String startTask(TaskContext taskContext);
+    String createTask(TaskContext taskContext);
+
+    /**
+     * 启动任务
+     * @param taskId 任务ID
+     */
+    void startTask(String taskId);
+
+    /**
+     * 获取任务状态
+     * @param taskId 任务ID
+     * @return 任务状态
+     */
+    TaskStatus getTaskStatus(String taskId);
+
+    /**
+     * 分页获取任务列表
+     * @param page 页码（从1开始）
+     * @param size 每页大小
+     */
+    Map<String, Object> listTasksByPage(int page, int size);
 
     /**
      * 停止任务
@@ -24,15 +47,9 @@ public interface ITaskFlowControlService {
     boolean stopTask(String taskId);
 
     /**
-     * 查询任务状态
+     * 获取任务上下文
      * @param taskId 任务ID
-     * @return 任务结果
+     * @return 任务上下文
      */
-    TaskResult getTaskStatus(String taskId);
-
-    /**
-     * 获取所有任务列表
-     * @return 任务列表
-     */
-    java.util.List<TaskResult> listAllTasks();
+    TaskContext getTaskContext(String taskId);
 }

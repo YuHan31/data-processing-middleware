@@ -12,6 +12,7 @@ public class DataRecord {
     private Map<String, Object> fields;
     private String sourceType;
     private Long timestamp;
+    private boolean valid = true;
 
     public DataRecord() {
         this.fields = new HashMap<>();
@@ -61,5 +62,17 @@ public class DataRecord {
 
     public void setTimestamp(Long timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public boolean isValid() {
+        return valid;
+    }
+
+    public void setValid(boolean valid) {
+        this.valid = valid;
+    }
+
+    public Map<String, Object> getData() {
+        return fields;
     }
 }

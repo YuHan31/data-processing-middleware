@@ -2,6 +2,7 @@ package com.middleware.org.parser;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.middleware.org.model.DataRecord;
+import com.middleware.org.model.ProcessedData;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -18,7 +19,7 @@ public class JsonParser implements IDataParser {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
-    public List<DataRecord> parse(String filePath) throws Exception {
+    public ProcessedData parse(String filePath) throws Exception {
         List<DataRecord> records = new ArrayList<>();
 
         List<Map<String, Object>> jsonData = objectMapper.readValue(
@@ -34,7 +35,10 @@ public class JsonParser implements IDataParser {
             records.add(record);
         }
 
-        return records;
+        ProcessedData processedData = new ProcessedData();
+        processedData.setRecords(records);
+        processedData.setTotalCount(records.size());
+        return processedData;
     }
 
     @Override

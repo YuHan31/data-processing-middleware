@@ -4,9 +4,12 @@ package com.middleware.org.model;
  * 任务状态枚举
  */
 public enum TaskStatus {
-    WAITING("等待中"),
-    RUNNING("运行中"),
-    SUCCESS("成功"),
+    UPLOADED("已上传"),
+    PARSING("解析中"),
+    CLEANING("清洗中"),
+    NORMALIZING("标准化中"),
+    EXPORTING("导出中"),
+    FINISHED("已完成"),
     FAILED("失败");
 
     private final String description;

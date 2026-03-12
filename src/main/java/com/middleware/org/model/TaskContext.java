@@ -13,10 +13,17 @@ public class TaskContext {
     private String inputFilePath;
     private String outputFilePath;
     private String fileType;
+    private TaskStatus status;
+    private ProcessedData processedData;
+    private com.middleware.org.statistics.DataStatistics statistics;
     private Map<String, Object> parameters;
+    private String originalFileName;
+    private long fileSize;
+    private long uploadTime;
 
     public TaskContext() {
         this.parameters = new HashMap<>();
+        this.status = TaskStatus.UPLOADED;
     }
 
     public TaskContext(String taskName, String inputFilePath, String outputFilePath) {
@@ -80,5 +87,53 @@ public class TaskContext {
 
     public Object getParameter(String key) {
         return this.parameters.get(key);
+    }
+
+    public TaskStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(TaskStatus status) {
+        this.status = status;
+    }
+
+    public ProcessedData getProcessedData() {
+        return processedData;
+    }
+
+    public void setProcessedData(ProcessedData processedData) {
+        this.processedData = processedData;
+    }
+
+    public com.middleware.org.statistics.DataStatistics getStatistics() {
+        return statistics;
+    }
+
+    public void setStatistics(com.middleware.org.statistics.DataStatistics statistics) {
+        this.statistics = statistics;
+    }
+
+    public String getOriginalFileName() {
+        return originalFileName;
+    }
+
+    public void setOriginalFileName(String originalFileName) {
+        this.originalFileName = originalFileName;
+    }
+
+    public long getFileSize() {
+        return fileSize;
+    }
+
+    public void setFileSize(long fileSize) {
+        this.fileSize = fileSize;
+    }
+
+    public long getUploadTime() {
+        return uploadTime;
+    }
+
+    public void setUploadTime(long uploadTime) {
+        this.uploadTime = uploadTime;
     }
 }

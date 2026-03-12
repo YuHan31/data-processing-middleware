@@ -1,6 +1,7 @@
 package com.middleware.org.parser;
 
 import com.middleware.org.model.DataRecord;
+import com.middleware.org.model.ProcessedData;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Component;
@@ -16,7 +17,7 @@ import java.util.List;
 public class ExcelParser implements IDataParser {
 
     @Override
-    public List<DataRecord> parse(String filePath) throws Exception {
+    public ProcessedData parse(String filePath) throws Exception {
         List<DataRecord> records = new ArrayList<>();
 
         try (FileInputStream fis = new FileInputStream(filePath);
@@ -49,7 +50,10 @@ public class ExcelParser implements IDataParser {
             }
         }
 
-        return records;
+        ProcessedData processedData = new ProcessedData();
+        processedData.setRecords(records);
+        processedData.setTotalCount(records.size());
+        return processedData;
     }
 
     private String getCellValue(Cell cell) {

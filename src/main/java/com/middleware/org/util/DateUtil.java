@@ -22,4 +22,8 @@ public class DateUtil {
     public static String getCurrentTimestamp() {
         return String.valueOf(System.currentTimeMillis());
     }
+
+    public static String getCurrentDateTime() {
+        return formatNow();
+    }
 }

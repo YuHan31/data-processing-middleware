@@ -1,0 +1,126 @@
+[INFO] Scanning for projects...
+Downloading from aliyunmaven: https://maven.aliyun.com/repository/public/org/jetbrains/kotlin/kotlin-maven-plugin/1.6.21/kotlin-maven-plugin-1.6.21.pom
+Progress (1): 1.9/5.9 kBProgress (1): 5.9 kB                        Downloaded from aliyunmaven: https://maven.aliyun.com/repository/public/org/jetbrains/kotlin/kotlin-maven-plugin/1.6.21/kotlin-maven-plugin-1.6.21.pom (5.9 kB at 405 B/s)
+Downloading from aliyunmaven: https://maven.aliyun.com/repository/public/org/jetbrains/kotlin/kotlin-project/1.6.21/kotlin-project-1.6.21.pom
+Progress (1): 10 kB                   Downloaded from aliyunmaven: https://maven.aliyun.com/repository/public/org/jetbrains/kotlin/kotlin-project/1.6.21/kotlin-project-1.6.21.pom (10 kB at 2.3 kB/s)
+Downloading from aliyunmaven: https://maven.aliyun.com/repository/public/org/jetbrains/kotlin/kotlin-maven-plugin/1.6.21/kotlin-maven-plugin-1.6.21.jar
+Progress (1): 12/80 kBProgress (1): 16/80 kBProgress (1): 20/80 kBProgress (1): 24/80 kBProgress (1): 28/80 kBProgress (1): 32/80 kBProgress (1): 36/80 kBProgress (1): 40/80 kBProgress (1): 42/80 kBProgress (1): 45/80 kBProgress (1): 50/80 kBProgress (1): 53/80 kBProgress (1): 57/80 kBProgress (1): 61/80 kBProgress (1): 65/80 kBProgress (1): 69/80 kBProgress (1): 73/80 kBProgress (1): 80 kB                      Downloaded from aliyunmaven: https://maven.aliyun.com/repository/public/org/jetbrains/kotlin/kotlin-maven-plugin/1.6.21/kotlin-maven-plugin-1.6.21.jar (80 kB at 13 kB/s)
+Downloading from aliyunmaven: https://maven.aliyun.com/repository/public/org/liquibase/liquibase-maven-plugin/4.9.1/liquibase-maven-plugin-4.9.1.pom
+Progress (1): 2.0/2.7 kBProgress (1): 2.7 kB                        Downloaded from aliyunmaven: https://maven.aliyun.com/repository/public/org/liquibase/liquibase-maven-plugin/4.9.1/liquibase-maven-plugin-4.9.1.pom (2.7 kB at 1.1 kB/s)
+Downloading from aliyunmaven: https://maven.aliyun.com/repository/public/org/liquibase/liquibase-maven-plugin/4.9.1/liquibase-maven-plugin-4.9.1.jar
+Progress (1): 4.8/108 kBProgress (1): 21/108 kB Progress (1): 38/108 kBProgress (1): 54/108 kBProgress (1): 70/108 kBProgress (1): 87/108 kBProgress (1): 103/108 kBProgress (1): 108 kB                        Downloaded from aliyunmaven: https://maven.aliyun.com/repository/public/org/liquibase/liquibase-maven-plugin/4.9.1/liquibase-maven-plugin-4.9.1.jar (108 kB at 14 kB/s)
+Downloading from aliyunmaven: https://maven.aliyun.com/repository/public/org/apache/maven/plugins/maven-antrun-plugin/3.0.0/maven-antrun-plugin-3.0.0.pom
+Progress (1): 4.7 kB                    Downloaded from aliyunmaven: https://maven.aliyun.com/repository/public/org/apache/maven/plugins/maven-antrun-plugin/3.0.0/maven-antrun-plugin-3.0.0.pom (4.7 kB at 1.3 kB/s)
+Downloading from aliyunmaven: https://maven.aliyun.com/repository/public/org/apache/maven/plugins/maven-antrun-plugin/3.0.0/maven-antrun-plugin-3.0.0.jar
+Progress (1): 3.4/39 kBProgress (1): 20/39 kB Progress (1): 36/39 kBProgress (1): 39 kB                      Downloaded from aliyunmaven: https://maven.aliyun.com/repository/public/org/apache/maven/plugins/maven-antrun-plugin/3.0.0/maven-antrun-plugin-3.0.0.jar (39 kB at 8.2 kB/s)
+Downloading from aliyunmaven: https://maven.aliyun.com/repository/public/org/apache/maven/plugins/maven-dependency-plugin/3.3.0/maven-dependency-plugin-3.3.0.pom
+Progress (1): 1.9/16 kBProgress (1): 16 kB                       Downloaded from aliyunmaven: https://maven.aliyun.com/repository/public/org/apache/maven/plugins/maven-dependency-plugin/3.3.0/maven-dependency-plugin-3.3.0.pom (16 kB at 13 kB/s)
+Downloading from aliyunmaven: https://maven.aliyun.com/repository/public/org/apache/maven/plugins/maven-dependency-plugin/3.3.0/maven-dependency-plugin-3.3.0.jar
+Progress (1): 3.4/187 kBProgress (1): 20/187 kB Progress (1): 36/187 kBProgress (1): 53/187 kBProgress (1): 69/187 kBProgress (1): 85/187 kBProgress (1): 102/187 kBProgress (1): 118/187 kBProgress (1): 134/187 kBProgress (1): 151/187 kBProgress (1): 151/187 kBProgress (1): 163/187 kBProgress (1): 176/187 kBProgress (1): 186/187 kBProgress (1): 187 kB                        Downloaded from aliyunmaven: https://maven.aliyun.com/repository/public/org/apache/maven/plugins/maven-dependency-plugin/3.3.0/maven-dependency-plugin-3.3.0.jar (187 kB at 24 kB/s)
+Downloading from aliyunmaven: https://maven.aliyun.com/repository/public/org/apache/maven/plugins/maven-enforcer-plugin/3.0.0/maven-enforcer-plugin-3.0.0.pom
+Progress (1): 1.9/7.7 kBProgress (1): 7.7 kB                        Downloaded from aliyunmaven: https://maven.aliyun.com/repository/public/org/apache/maven/plugins/maven-enforcer-plugin/3.0.0/maven-enforcer-plugin-3.0.0.pom (7.7 kB at 9.8 kB/s)
+Downloading from aliyunmaven: https://maven.aliyun.com/repository/public/org/apache/maven/enforcer/enforcer/3.0.0/enforcer-3.0.0.pom
+Progress (1): 1.9/8.7 kBProgress (1): 8.7 kB                        Downloaded from aliyunmaven: https://maven.aliyun.com/repository/public/org/apache/maven/enforcer/enforcer/3.0.0/enforcer-3.0.0.pom (8.7 kB at 11 kB/s)
+Downloading from aliyunmaven: https://maven.aliyun.com/repository/public/org/apache/maven/plugins/maven-enforcer-plugin/3.0.0/maven-enforcer-plugin-3.0.0.jar
+Progress (1): 3.4/27 kBProgress (1): 20/27 kB Progress (1): 27 kB                      Downloaded from aliyunmaven: https://maven.aliyun.com/repository/public/org/apache/maven/plugins/maven-enforcer-plugin/3.0.0/maven-enforcer-plugin-3.0.0.jar (27 kB at 15 kB/s)
+Downloading from aliyunmaven: https://maven.aliyun.com/repository/public/org/apache/maven/plugins/maven-jar-plugin/3.2.2/maven-jar-plugin-3.2.2.pom
+Progress (1): 1.9/7.5 kBProgress (1): 7.5 kB                        Downloaded from aliyunmaven: https://maven.aliyun.com/repository/public/org/apache/maven/plugins/maven-jar-plugin/3.2.2/maven-jar-plugin-3.2.2.pom (7.5 kB at 766 B/s)
+Downloading from aliyunmaven: https://maven.aliyun.com/repository/public/org/apache/maven/plugins/maven-jar-plugin/3.2.2/maven-jar-plugin-3.2.2.jar
+Progress (1): 3.4/29 kBProgress (1): 20/29 kB Progress (1): 29 kB                      Downloaded from aliyunmaven: https://maven.aliyun.com/repository/public/org/apache/maven/plugins/maven-jar-plugin/3.2.2/maven-jar-plugin-3.2.2.jar (29 kB at 3.9 kB/s)
+Downloading from aliyunmaven: https://maven.aliyun.com/repository/public/org/apache/maven/plugins/maven-javadoc-plugin/3.4.1/maven-javadoc-plugin-3.4.1.pom
+Progress (1): 7.3/21 kBProgress (1): 7.7/21 kBProgress (1): 21 kB                       Downloaded from aliyunmaven: https://maven.aliyun.com/repository/public/org/apache/maven/plugins/maven-javadoc-plugin/3.4.1/maven-javadoc-plugin-3.4.1.pom (21 kB at 12 kB/s)
+Downloading from aliyunmaven: https://maven.aliyun.com/repository/public/org/apache/maven/plugins/maven-javadoc-plugin/3.4.1/maven-javadoc-plugin-3.4.1.jar
+Progress (1): 7.3/523 kBProgress (1): 15/523 kB Progress (1): 32/523 kBProgress (1): 48/523 kBProgress (1): 65/523 kBProgress (1): 81/523 kBProgress (1): 97/523 kBProgress (1): 114/523 kBProgress (1): 130/523 kBProgress (1): 146/523 kBProgress (1): 163/523 kBProgress (1): 179/523 kBProgress (1): 196/523 kBProgress (1): 212/523 kBProgress (1): 228/523 kBProgress (1): 245/523 kBProgress (1): 261/523 kBProgress (1): 278/523 kBProgress (1): 294/523 kBProgress (1): 310/523 kBProgress (1): 327/523 kBProgress (1): 343/523 kBProgress (1): 359/523 kBProgress (1): 376/523 kBProgress (1): 392/523 kBProgress (1): 409/523 kBProgress (1): 425/523 kBProgress (1): 441/523 kBProgress (1): 458/523 kBProgress (1): 474/523 kBProgress (1): 491/523 kBProgress (1): 507/523 kBProgress (1): 523/523 kBProgress (1): 523 kB                        Downloaded from aliyunmaven: https://maven.aliyun.com/repository/public/org/apache/maven/plugins/maven-javadoc-plugin/3.4.1/maven-javadoc-plugin-3.4.1.jar (523 kB at 19 kB/s)
+Downloading from aliyunmaven: https://maven.aliyun.com/repository/public/org/apache/maven/plugins/maven-shade-plugin/3.3.0/maven-shade-plugin-3.3.0.pom
+Progress (1): 7.3/13 kBProgress (1): 13 kB                       Downloaded from aliyunmaven: https://maven.aliyun.com/repository/public/org/apache/maven/plugins/maven-shade-plugin/3.3.0/maven-shade-plugin-3.3.0.pom (13 kB at 4.4 kB/s)
+Downloading from aliyunmaven: https://maven.aliyun.com/repository/public/org/apache/maven/plugins/maven-shade-plugin/3.3.0/maven-shade-plugin-3.3.0.jar
+Progress (1): 4.8/141 kBProgress (1): 21/141 kB Progress (1): 38/141 kBProgress (1): 54/141 kBProgress (1): 70/141 kBProgress (1): 87/141 kBProgress (1): 103/141 kBProgress (1): 120/141 kBProgress (1): 136/141 kBProgress (1): 141 kB                        Downloaded from aliyunmaven: https://maven.aliyun.com/repository/public/org/apache/maven/plugins/maven-shade-plugin/3.3.0/maven-shade-plugin-3.3.0.jar (141 kB at 14 kB/s)
+Downloading from aliyunmaven: https://maven.aliyun.com/repository/public/org/apache/maven/plugins/maven-war-plugin/3.3.2/maven-war-plugin-3.3.2.pom
+Progress (1): 4.8/9.7 kBProgress (1): 9.7 kB                        Downloaded from aliyunmaven: https://maven.aliyun.com/repository/public/org/apache/maven/plugins/maven-war-plugin/3.3.2/maven-war-plugin-3.3.2.pom (9.7 kB at 1.9 kB/s)
+Downloading from aliyunmaven: https://maven.aliyun.com/repository/public/org/apache/maven/plugins/maven-war-plugin/3.3.2/maven-war-plugin-3.3.2.jar
+Progress (1): 7.3/83 kBProgress (1): 16/83 kB Progress (1): 22/83 kBProgress (1): 39/83 kBProgress (1): 55/83 kBProgress (1): 72/83 kBProgress (1): 83 kB                      Downloaded from aliyunmaven: https://maven.aliyun.com/repository/public/org/apache/maven/plugins/maven-war-plugin/3.3.2/maven-war-plugin-3.3.2.jar (83 kB at 9.9 kB/s)
+Downloading from aliyunmaven: https://maven.aliyun.com/repository/public/org/springframework/boot/spring-boot-maven-plugin/2.7.18/spring-boot-maven-plugin-2.7.18.pom
+Progress (1): 3.2 kB                    Downloaded from aliyunmaven: https://maven.aliyun.com/repository/public/org/springframework/boot/spring-boot-maven-plugin/2.7.18/spring-boot-maven-plugin-2.7.18.pom (3.2 kB at 730 B/s)
+Downloading from aliyunmaven: https://maven.aliyun.com/repository/public/org/springframework/boot/spring-boot-maven-plugin/2.7.18/spring-boot-maven-plugin-2.7.18.jar
+Progress (1): 1.9/108 kBProgress (1): 18/108 kB Progress (1): 35/108 kBProgress (1): 51/108 kBProgress (1): 67/108 kBProgress (1): 84/108 kBProgress (1): 100/108 kBProgress (1): 108 kB                        Downloaded from aliyunmaven: https://maven.aliyun.com/repository/public/org/springframework/boot/spring-boot-maven-plugin/2.7.18/spring-boot-maven-plugin-2.7.18.jar (108 kB at 11 kB/s)
+[INFO] 
+[INFO] ---------------< org.example:data-processing-middleware >---------------
+[INFO] Building data-processing-middleware 1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:2.7.18:run (default-cli) > test-compile @ data-processing-middleware >>>
+[INFO] 
+[INFO] --- resources:3.2.0:resources (default-resources) @ data-processing-middleware ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Using 'UTF-8' encoding to copy filtered properties files.
+[INFO] Copying 1 resource
+[INFO] Copying 1 resource
+[INFO] 
+[INFO] --- compiler:3.10.1:compile (default-compile) @ data-processing-middleware ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- resources:3.2.0:testResources (default-testResources) @ data-processing-middleware ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Using 'UTF-8' encoding to copy filtered properties files.
+[INFO] skip non existing resourceDirectory /Users/yuhan/Desktop/毕业设计/data-processing-middleware/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.10.1:testCompile (default-testCompile) @ data-processing-middleware ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] <<< spring-boot:2.7.18:run (default-cli) < test-compile @ data-processing-middleware <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:2.7.18:run (default-cli) @ data-processing-middleware ---
+Downloading from aliyunmaven: https://maven.aliyun.com/repository/public/org/springframework/boot/spring-boot-buildpack-platform/2.7.18/spring-boot-buildpack-platform-2.7.18.pom
+Progress (1): 1.9/3.4 kBProgress (1): 3.4 kB                        Downloaded from aliyunmaven: https://maven.aliyun.com/repository/public/org/springframework/boot/spring-boot-buildpack-platform/2.7.18/spring-boot-buildpack-platform-2.7.18.pom (3.4 kB at 440 B/s)
+Downloading from aliyunmaven: https://maven.aliyun.com/repository/public/org/springframework/boot/spring-boot-loader-tools/2.7.18/spring-boot-loader-tools-2.7.18.pom
+Progress (1): 0.5/2.2 kBProgress (1): 2.2 kB                        Downloaded from aliyunmaven: https://maven.aliyun.com/repository/public/org/springframework/boot/spring-boot-loader-tools/2.7.18/spring-boot-loader-tools-2.7.18.pom (2.2 kB at 886 B/s)
+Downloading from aliyunmaven: https://maven.aliyun.com/repository/public/org/springframework/boot/spring-boot-buildpack-platform/2.7.18/spring-boot-buildpack-platform-2.7.18.jar
+Progress (1): 7.3/264 kBProgress (1): 11/264 kB Progress (1): 27/264 kBProgress (1): 43/264 kBProgress (1): 60/264 kBProgress (1): 76/264 kBProgress (1): 93/264 kBProgress (1): 109/264 kBProgress (1): 125/264 kBProgress (1): 142/264 kBProgress (1): 158/264 kBProgress (1): 175/264 kBProgress (1): 191/264 kBProgress (1): 207/264 kBProgress (1): 224/264 kBProgress (1): 240/264 kBProgress (1): 256/264 kBProgress (1): 264 kB                        Downloaded from aliyunmaven: https://maven.aliyun.com/repository/public/org/springframework/boot/spring-boot-buildpack-platform/2.7.18/spring-boot-buildpack-platform-2.7.18.jar (264 kB at 21 kB/s)
+Downloading from aliyunmaven: https://maven.aliyun.com/repository/public/org/springframework/boot/spring-boot-loader-tools/2.7.18/spring-boot-loader-tools-2.7.18.jar
+Progress (1): 4.8/250 kBProgress (1): 21/250 kB Progress (1): 38/250 kBProgress (1): 54/250 kBProgress (1): 70/250 kBProgress (1): 87/250 kBProgress (1): 103/250 kBProgress (1): 120/250 kBProgress (1): 136/250 kBProgress (1): 152/250 kBProgress (1): 169/250 kBProgress (1): 185/250 kBProgress (1): 200/250 kBProgress (1): 217/250 kBProgress (1): 233/250 kBProgress (1): 237/250 kBProgress (1): 246/250 kBProgress (1): 250 kB                        Downloaded from aliyunmaven: https://maven.aliyun.com/repository/public/org/springframework/boot/spring-boot-loader-tools/2.7.18/spring-boot-loader-tools-2.7.18.jar (250 kB at 21 kB/s)
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::               (v2.7.18)
+
+2026-03-12 23:25:52 [main] INFO  com.middleware.org.Application - Starting Application using Java 17.0.8 on 192.168.1.12 with PID 25657 (/Users/yuhan/Desktop/毕业设计/data-processing-middleware/target/classes started by yuhan in /Users/yuhan/Desktop/毕业设计/data-processing-middleware)
+2026-03-12 23:25:52 [main] DEBUG com.middleware.org.Application - Running with Spring Boot v2.7.18, Spring v5.3.31
+2026-03-12 23:25:52 [main] INFO  com.middleware.org.Application - No active profile set, falling back to 1 default profile: "default"
+2026-03-12 23:25:52 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.support.BeanDefinitionOverrideException: Invalid bean definition with name 'taskExecutor' defined in class path resource [com/middleware/org/task/TaskThreadPoolConfig.class]: Cannot register bean definition [Root bean: class [null]; scope=; abstract=false; lazyInit=null; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=taskThreadPoolConfig; factoryMethodName=taskExecutor; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [com/middleware/org/task/TaskThreadPoolConfig.class]] for bean 'taskExecutor': There is already [Generic bean: class [com.middleware.org.task.TaskExecutor]; scope=singleton; abstract=false; lazyInit=null; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in file [/Users/yuhan/Desktop/毕业设计/data-processing-middleware/target/classes/com/middleware/org/task/TaskExecutor.class]] bound.
+2026-03-12 23:25:52 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2026-03-12 23:25:52 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+The bean 'taskExecutor', defined in class path resource [com/middleware/org/task/TaskThreadPoolConfig.class], could not be registered. A bean with that name has already been defined in file [/Users/yuhan/Desktop/毕业设计/data-processing-middleware/target/classes/com/middleware/org/task/TaskExecutor.class] and overriding is disabled.
+
+Action:
+
+Consider renaming one of the beans or enabling overriding by setting spring.main.allow-bean-definition-overriding=true
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  02:58 min
+[INFO] Finished at: 2026-03-12T23:25:52+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:2.7.18:run (default-cli) on project data-processing-middleware: Application finished with exit code: 1 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

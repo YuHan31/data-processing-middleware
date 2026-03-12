@@ -1,6 +1,7 @@
 package com.middleware.org.parser;
 
 import com.middleware.org.model.DataRecord;
+import com.middleware.org.model.ProcessedData;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
@@ -15,7 +16,7 @@ import java.util.List;
 public class CsvParser implements IDataParser {
 
     @Override
-    public List<DataRecord> parse(String filePath) throws Exception {
+    public ProcessedData parse(String filePath) throws Exception {
         List<DataRecord> records = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
@@ -39,7 +40,10 @@ public class CsvParser implements IDataParser {
             }
         }
 
-        return records;
+        ProcessedData processedData = new ProcessedData();
+        processedData.setRecords(records);
+        processedData.setTotalCount(records.size());
+        return processedData;
     }
 
     @Override
