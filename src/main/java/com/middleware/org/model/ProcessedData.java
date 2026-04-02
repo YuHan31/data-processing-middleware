@@ -51,4 +51,8 @@ public class ProcessedData {
     public void setInvalidCount(int invalidCount) {
         this.invalidCount = invalidCount;
     }
+
+    public int getRecordCount() {
+        return records != null ? records.size() : 0;
+    }
 }

@@ -1,5 +1,8 @@
 package com.middleware.org.model;
 
+import com.middleware.org.common.TaskStatus;
+
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,13 +16,19 @@ public class TaskContext {
     private String inputFilePath;
     private String outputFilePath;
     private String fileType;
+    private String outputFormat; // 输出格式：csv, xlsx, json
+    private boolean enableCleaning = true; // 是否启用数据清洗
+    private boolean enableNormalization = true; // 是否启用数据标准化
     private TaskStatus status;
     private ProcessedData processedData;
-    private com.middleware.org.statistics.DataStatistics statistics;
+    private com.middleware.org.model.DataStatistics statistics;
     private Map<String, Object> parameters;
     private String originalFileName;
     private long fileSize;
     private long uploadTime;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
+    private Long userId; // 用户ID，用于数据隔离
 
     public TaskContext() {
         this.parameters = new HashMap<>();
@@ -105,11 +114,11 @@ public class TaskContext {
         this.processedData = processedData;
     }
 
-    public com.middleware.org.statistics.DataStatistics getStatistics() {
+    public com.middleware.org.model.DataStatistics getStatistics() {
         return statistics;
     }
 
-    public void setStatistics(com.middleware.org.statistics.DataStatistics statistics) {
+    public void setStatistics(com.middleware.org.model.DataStatistics statistics) {
         this.statistics = statistics;
     }
 
@@ -135,5 +144,53 @@ public class TaskContext {
 
     public void setUploadTime(long uploadTime) {
         this.uploadTime = uploadTime;
+    }
+
+    public LocalDateTime getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public LocalDateTime getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
+    }
+
+    public String getOutputFormat() {
+        return outputFormat;
+    }
+
+    public void setOutputFormat(String outputFormat) {
+        this.outputFormat = outputFormat;
+    }
+
+    public boolean isEnableCleaning() {
+        return enableCleaning;
+    }
+
+    public void setEnableCleaning(boolean enableCleaning) {
+        this.enableCleaning = enableCleaning;
+    }
+
+    public boolean isEnableNormalization() {
+        return enableNormalization;
+    }
+
+    public void setEnableNormalization(boolean enableNormalization) {
+        this.enableNormalization = enableNormalization;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

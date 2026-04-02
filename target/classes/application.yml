@@ -9,12 +9,24 @@ spring:
   application:
     name: data-processing-middleware
 
+  # 数据库配置
+  datasource:
+    url: jdbc:mysql://localhost:3306/middleware_db?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: 12344321
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
   # 文件上传配置
   servlet:
     multipart:
       enabled: true
       max-file-size: 100MB
       max-request-size: 100MB
+
+# MyBatis-Plus配置
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 # 文件存储路径配置
 file:

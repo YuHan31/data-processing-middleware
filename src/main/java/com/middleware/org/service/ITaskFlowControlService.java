@@ -1,10 +1,8 @@
 package com.middleware.org.service;
 
 import com.middleware.org.model.TaskContext;
-import com.middleware.org.model.TaskResult;
-import com.middleware.org.model.TaskStatus;
+import com.middleware.org.common.TaskStatus;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,8 +20,12 @@ public interface ITaskFlowControlService {
     /**
      * 启动任务
      * @param taskId 任务ID
+     * @param outputFormat 输出格式
+     * @param outputPath 输出路径
+     * @param enableCleaning 是否启用数据清洗
+     * @param enableNormalization 是否启用数据标准化
      */
-    void startTask(String taskId);
+    void startTask(String taskId, String outputFormat, String outputPath, boolean enableCleaning, boolean enableNormalization);
 
     /**
      * 获取任务状态
@@ -40,6 +42,14 @@ public interface ITaskFlowControlService {
     Map<String, Object> listTasksByPage(int page, int size);
 
     /**
+     * 分页获取当前用户的任务列表
+     * @param userId 用户ID
+     * @param page 页码（从1开始）
+     * @param size 每页大小
+     */
+    Map<String, Object> listTasksByUserId(Long userId, int page, int size);
+
+    /**
      * 停止任务
      * @param taskId 任务ID
      * @return 是否成功
@@ -52,4 +62,11 @@ public interface ITaskFlowControlService {
      * @return 任务上下文
      */
     TaskContext getTaskContext(String taskId);
+
+    /**
+     * 删除任务
+     * @param taskId 任务ID
+     * @return 是否删除成功
+     */
+    boolean deleteTask(String taskId);
 }

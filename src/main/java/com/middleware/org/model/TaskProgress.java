@@ -1,6 +1,6 @@
-package com.middleware.org.progress;
+package com.middleware.org.model;
 
-import com.middleware.org.model.TaskStatus;
+import com.middleware.org.common.TaskStatus;
 
 /**
  * 任务进度

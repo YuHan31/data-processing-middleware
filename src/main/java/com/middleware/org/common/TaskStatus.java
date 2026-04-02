@@ -1,4 +1,4 @@
-package com.middleware.org.model;
+package com.middleware.org.common;
 
 /**
  * 任务状态枚举

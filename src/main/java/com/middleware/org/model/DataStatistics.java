@@ -1,4 +1,4 @@
-package com.middleware.org.statistics;
+package com.middleware.org.model;
 
 /**
  * 数据统计结果

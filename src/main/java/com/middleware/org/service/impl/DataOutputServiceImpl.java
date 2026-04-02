@@ -40,7 +40,7 @@ public class DataOutputServiceImpl implements IDataOutputService {
         if (outputPath.endsWith(".csv")) {
             return "CSV";
         } else if (outputPath.endsWith(".xlsx") || outputPath.endsWith(".xls")) {
-            return "EXCEL";
+            return "XLSX";
         } else if (outputPath.endsWith(".json")) {
             return "JSON";
         }

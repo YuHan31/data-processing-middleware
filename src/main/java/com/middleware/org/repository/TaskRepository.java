@@ -1,7 +1,7 @@
 package com.middleware.org.repository;
 
 import com.middleware.org.model.TaskContext;
-import com.middleware.org.model.TaskStatus;
+import com.middleware.org.common.TaskStatus;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -45,6 +45,15 @@ public class TaskRepository {
     public List<TaskContext> findByStatus(TaskStatus status) {
         return taskStore.values().stream()
                 .filter(task -> task.getStatus() == status)
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * 根据用户ID查找任务
+     */
+    public List<TaskContext> findByUserId(Long userId) {
+        return taskStore.values().stream()
+                .filter(task -> userId.equals(task.getUserId()))
                 .collect(Collectors.toList());
     }
 

@@ -1,6 +1,6 @@
 package com.middleware.org.controller;
 
-import com.middleware.org.common.ApiResponse;
+import com.middleware.org.common.Result;
 import com.middleware.org.model.LogEntry;
 import com.middleware.org.service.ILogService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -30,16 +30,24 @@ public class LogController {
      */
     @Operation(summary = "查询任务日志", description = "查询指定任务的执行日志")
     @GetMapping("/{taskId}")
-    public ApiResponse<Map<String, Object>> queryLogs(
+    public Result<Map<String, Object>> queryLogs(
             @Parameter(description = "任务ID") @PathVariable String taskId) {
         try {
-            List<LogEntry> logs = logService.queryLogs(taskId);
+            List<LogEntry> logEntries = logService.queryLogs(taskId);
+            List<String> logs = logEntries.stream()
+                    .map(entry -> {
+                        String time = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                                .format(new java.util.Date(entry.getTimestamp()));
+                        return String.format("[%s] [%s] [%s] %s",
+                                time, entry.getLevel(), taskId, entry.getMessage());
+                    })
+                    .collect(java.util.stream.Collectors.toList());
             Map<String, Object> data = new HashMap<>();
             data.put("logs", logs);
             data.put("total", logs.size());
-            return ApiResponse.success(data);
+            return Result.success(data);
         } catch (Exception e) {
-            return ApiResponse.error("查询日志失败: " + e.getMessage());
+            return Result.fail("查询日志失败: " + e.getMessage());
         }
     }
 }

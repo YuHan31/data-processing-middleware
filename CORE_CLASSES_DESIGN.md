@@ -10,7 +10,7 @@
 - taskId: String                    // 任务ID
 - taskName: String                  // 任务名称
 - inputFilePath: String             // 输入文件路径
-- outputFilePath: String            // 输出文件路径
+- outputFilePath: String            // 输出文件路径·  
 - fileType: String                  // 文件类型（csv/xlsx/json）
 - status: TaskStatus                // 任务状态
 - processedData: ProcessedData      // 处理后的数据

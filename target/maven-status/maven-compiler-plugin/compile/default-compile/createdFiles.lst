@@ -14,9 +14,7 @@ com/middleware/org/cleaner/FormatValidator.class
 com/middleware/org/config/WebConfig.class
 com/middleware/org/service/impl/DataCleanServiceImpl.class
 com/middleware/org/parser/ExcelParser$1.class
-com/middleware/org/common/ApiResponse.class
 com/middleware/org/exception/FileProcessException.class
-com/middleware/org/progress/TaskProgress.class
 com/middleware/org/service/IDataCleanService.class
 com/middleware/org/cleaner/IDataCleaner.class
 com/middleware/org/statistics/StatisticsService.class
@@ -40,13 +38,11 @@ com/middleware/org/service/impl/DataParseServiceImpl.class
 com/middleware/org/model/TaskResult.class
 com/middleware/org/parser/ExcelParser.class
 com/middleware/org/controller/LogController.class
-com/middleware/org/statistics/DataStatistics.class
 com/middleware/org/util/DateUtil.class
 com/middleware/org/model/TaskContext.class
 com/middleware/org/exporter/IDataExporter.class
 com/middleware/org/util/FileUtil.class
 com/middleware/org/service/impl/TaskFlowControlServiceImpl.class
-com/middleware/org/model/TaskStatus.class
 com/middleware/org/exception/DataParseException.class
 com/middleware/org/cleaner/MissingValueCleaner.class
 com/middleware/org/parser/JsonParser.class

@@ -1,6 +1,7 @@
 package com.middleware.org.statistics;
 
 import com.middleware.org.model.DataRecord;
+import com.middleware.org.model.DataStatistics;
 import com.middleware.org.model.ProcessedData;
 import com.middleware.org.model.TaskContext;
 import com.middleware.org.util.DateUtil;

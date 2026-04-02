@@ -1,6 +1,7 @@
 package com.middleware.org.progress;
 
-import com.middleware.org.model.TaskStatus;
+import com.middleware.org.common.TaskStatus;
+import com.middleware.org.model.TaskProgress;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
