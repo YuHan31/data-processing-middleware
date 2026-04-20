@@ -2,17 +2,19 @@ package com.middleware.org.model;
 
 /**
  * 日志条目
+ * 系统内部使用 className/stackTrace 等
+ * 面向用户使用 userMessage
  */
 public class LogEntry {
     private Long id;
     private String level; // INFO, WARN, ERROR
-    private String message;
+    private String message;      // 系统原始日志（管理员可见）
+    private String userMessage;  // 用户友好的日志提示
     private String taskId;
     private Long timestamp;
-    private String threadName;
-    private String className;
-    private String exceptionMessage;
-    private String stackTrace;
+    private String stage;        // 任务阶段：PARSE / CLEAN / EXPORT 等
+    private String exceptionMessage; // 异常简短信息（仅 ERROR 级别）
+    private String stackTrace;    // 堆栈（管理员可见）
 
     public LogEntry() {
         this.timestamp = System.currentTimeMillis();
@@ -22,6 +24,23 @@ public class LogEntry {
         this.level = level;
         this.message = message;
         this.timestamp = System.currentTimeMillis();
+    }
+
+    /**
+     * 便捷构造器：同时设置系统消息和用户消息
+     */
+    public static LogEntry of(String level, String message, String userMessage) {
+        LogEntry entry = new LogEntry(level, message);
+        entry.setUserMessage(userMessage);
+        return entry;
+    }
+
+    public static LogEntry error(String message, String userMessage) {
+        return of("ERROR", message, userMessage);
+    }
+
+    public static LogEntry info(String message, String userMessage) {
+        return of("INFO", message, userMessage);
     }
 
     public Long getId() {
@@ -48,6 +67,14 @@ public class LogEntry {
         this.message = message;
     }
 
+    public String getUserMessage() {
+        return userMessage;
+    }
+
+    public void setUserMessage(String userMessage) {
+        this.userMessage = userMessage;
+    }
+
     public String getTaskId() {
         return taskId;
     }
@@ -64,20 +91,12 @@ public class LogEntry {
         this.timestamp = timestamp;
     }
 
-    public String getThreadName() {
-        return threadName;
+    public String getStage() {
+        return stage;
     }
 
-    public void setThreadName(String threadName) {
-        this.threadName = threadName;
-    }
-
-    public String getClassName() {
-        return className;
-    }
-
-    public void setClassName(String className) {
-        this.className = className;
+    public void setStage(String stage) {
+        this.stage = stage;
     }
 
     public String getExceptionMessage() {

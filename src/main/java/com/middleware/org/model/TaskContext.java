@@ -3,7 +3,9 @@ package com.middleware.org.model;
 import com.middleware.org.common.TaskStatus;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -17,8 +19,6 @@ public class TaskContext {
     private String outputFilePath;
     private String fileType;
     private String outputFormat; // 输出格式：csv, xlsx, json
-    private boolean enableCleaning = true; // 是否启用数据清洗
-    private boolean enableNormalization = true; // 是否启用数据标准化
     private TaskStatus status;
     private ProcessedData processedData;
     private com.middleware.org.model.DataStatistics statistics;
@@ -29,6 +29,14 @@ public class TaskContext {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private Long userId; // 用户ID，用于数据隔离
+    /**
+     * 原始数据（解析完成后保存，深拷贝）
+     */
+    private List<DataRecord> originalRecords = new ArrayList<>();
+    /**
+     * 清洗后数据（清洗完成后保存）
+     */
+    private List<DataRecord> cleanedRecords = new ArrayList<>();
 
     public TaskContext() {
         this.parameters = new HashMap<>();
@@ -170,27 +178,27 @@ public class TaskContext {
         this.outputFormat = outputFormat;
     }
 
-    public boolean isEnableCleaning() {
-        return enableCleaning;
-    }
-
-    public void setEnableCleaning(boolean enableCleaning) {
-        this.enableCleaning = enableCleaning;
-    }
-
-    public boolean isEnableNormalization() {
-        return enableNormalization;
-    }
-
-    public void setEnableNormalization(boolean enableNormalization) {
-        this.enableNormalization = enableNormalization;
-    }
-
     public Long getUserId() {
         return userId;
     }
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public List<DataRecord> getOriginalRecords() {
+        return originalRecords;
+    }
+
+    public void setOriginalRecords(List<DataRecord> originalRecords) {
+        this.originalRecords = originalRecords;
+    }
+
+    public List<DataRecord> getCleanedRecords() {
+        return cleanedRecords;
+    }
+
+    public void setCleanedRecords(List<DataRecord> cleanedRecords) {
+        this.cleanedRecords = cleanedRecords;
     }
 }

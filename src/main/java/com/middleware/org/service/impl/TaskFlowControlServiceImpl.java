@@ -5,6 +5,7 @@ import com.middleware.org.model.TaskResult;
 import com.middleware.org.common.TaskStatus;
 import com.middleware.org.progress.ProgressService;
 import com.middleware.org.repository.TaskRepository;
+import com.middleware.org.service.ICleanRuleService;
 import com.middleware.org.service.ITaskFlowControlService;
 import com.middleware.org.task.TaskExecutor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,9 @@ public class TaskFlowControlServiceImpl implements ITaskFlowControlService {
     @Autowired
     private ProgressService progressService;
 
+    @Autowired
+    private ICleanRuleService cleanRuleService;
+
     @Override
     public String createTask(TaskContext taskContext) {
         String taskId = generateTaskId();
@@ -45,7 +49,8 @@ public class TaskFlowControlServiceImpl implements ITaskFlowControlService {
     }
 
     @Override
-    public void startTask(String taskId, String outputFormat, String outputPath, boolean enableCleaning, boolean enableNormalization) {
+    public void startTask(String taskId, String outputFormat, String outputPath,
+                          List<String> rules) {
         TaskContext taskContext = taskRepository.findById(taskId);
         if (taskContext == null) {
             throw new RuntimeException("任务不存在: " + taskId);
@@ -54,7 +59,6 @@ public class TaskFlowControlServiceImpl implements ITaskFlowControlService {
         // 更新任务配置
         if (outputFormat != null && !outputFormat.trim().isEmpty()) {
             taskContext.setOutputFormat(outputFormat);
-            // 同步更新已有路径的扩展名
             String currentPath = taskContext.getOutputFilePath();
             if (currentPath != null && (outputPath == null || outputPath.trim().isEmpty())) {
                 int lastDot = currentPath.lastIndexOf('.');
@@ -68,12 +72,10 @@ public class TaskFlowControlServiceImpl implements ITaskFlowControlService {
             File f = new File(outputPath);
             String finalPath;
             if (f.isDirectory()) {
-                // 用户输入的是文件夹路径，自动生成文件名
                 String ext = (outputFormat != null && !outputFormat.trim().isEmpty()) ? outputFormat : "csv";
                 String fileName = taskId + "_output." + ext;
                 finalPath = outputPath + File.separator + fileName;
             } else {
-                // 用户输入的是文件路径，如果选了格式，替换扩展名
                 if (outputFormat != null && !outputFormat.trim().isEmpty()) {
                     int lastDot = outputPath.lastIndexOf('.');
                     if (lastDot > 0) {
@@ -88,10 +90,13 @@ public class TaskFlowControlServiceImpl implements ITaskFlowControlService {
             taskContext.setOutputFilePath(finalPath);
         }
 
-        taskContext.setEnableCleaning(enableCleaning);
-        taskContext.setEnableNormalization(enableNormalization);
-
         taskRepository.save(taskContext);
+
+        // 保存用户选择的清洗规则到数据库
+        if (rules != null && !rules.isEmpty()) {
+            cleanRuleService.saveTaskRules(taskId, rules);
+        }
+
         taskExecutor.executeTask(taskContext);
     }
 
@@ -153,13 +158,10 @@ public class TaskFlowControlServiceImpl implements ITaskFlowControlService {
         if (taskContext == null) {
             return false;
         }
-
-        // 如果任务已经完成或失败，不允许终止
         if (taskContext.getStatus() == TaskStatus.FINISHED ||
             taskContext.getStatus() == TaskStatus.FAILED) {
             return false;
         }
-
         taskContext.setStatus(TaskStatus.FAILED);
         taskRepository.save(taskContext);
         return true;
@@ -170,6 +172,8 @@ public class TaskFlowControlServiceImpl implements ITaskFlowControlService {
         if (!taskRepository.exists(taskId)) {
             return false;
         }
+        // 删除任务时同步清理规则关联
+        cleanRuleService.saveTaskRules(taskId, List.of());
         taskRepository.delete(taskId);
         return true;
     }

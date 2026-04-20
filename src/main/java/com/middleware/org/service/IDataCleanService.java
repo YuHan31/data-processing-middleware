@@ -12,10 +12,4 @@ public interface IDataCleanService {
      * @param taskContext 任务上下文
      */
     void clean(TaskContext taskContext);
-
-    /**
-     * 标准化数据
-     * @param taskContext 任务上下文
-     */
-    void normalize(TaskContext taskContext);
 }

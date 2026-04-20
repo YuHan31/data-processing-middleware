@@ -7,7 +7,6 @@ public enum TaskStatus {
     UPLOADED("已上传"),
     PARSING("解析中"),
     CLEANING("清洗中"),
-    NORMALIZING("标准化中"),
     EXPORTING("导出中"),
     FINISHED("已完成"),
     FAILED("失败");

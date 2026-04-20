@@ -3,6 +3,7 @@ package com.middleware.org.service;
 import com.middleware.org.model.TaskContext;
 import com.middleware.org.common.TaskStatus;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,10 +23,9 @@ public interface ITaskFlowControlService {
      * @param taskId 任务ID
      * @param outputFormat 输出格式
      * @param outputPath 输出路径
-     * @param enableCleaning 是否启用数据清洗
-     * @param enableNormalization 是否启用数据标准化
+     * @param rules 用户选择的清洗规则代码列表（可为空）
      */
-    void startTask(String taskId, String outputFormat, String outputPath, boolean enableCleaning, boolean enableNormalization);
+    void startTask(String taskId, String outputFormat, String outputPath, List<String> rules);
 
     /**
      * 获取任务状态

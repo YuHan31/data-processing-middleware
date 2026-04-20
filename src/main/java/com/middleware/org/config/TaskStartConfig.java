@@ -1,5 +1,8 @@
 package com.middleware.org.config;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 任务启动配置
  */
@@ -7,8 +10,11 @@ public class TaskStartConfig {
 
     private String outputFormat;       // 输出格式：csv, xlsx, json
     private String outputPath;         // 自定义输出路径（可选）
-    private boolean enableCleaning = true;      // 是否启用数据清洗
-    private boolean enableNormalization = true;  // 是否启用数据标准化
+    /**
+     * 用户选择的清洗规则列表（ruleCode）
+     * 例如：["TRIM", "REMOVE_NULL", "DESENSITIZE"]
+     */
+    private List<String> rules = new ArrayList<>();
 
     public String getOutputFormat() {
         return outputFormat;
@@ -26,19 +32,11 @@ public class TaskStartConfig {
         this.outputPath = outputPath;
     }
 
-    public boolean isEnableCleaning() {
-        return enableCleaning;
+    public List<String> getRules() {
+        return rules;
     }
 
-    public void setEnableCleaning(boolean enableCleaning) {
-        this.enableCleaning = enableCleaning;
-    }
-
-    public boolean isEnableNormalization() {
-        return enableNormalization;
-    }
-
-    public void setEnableNormalization(boolean enableNormalization) {
-        this.enableNormalization = enableNormalization;
+    public void setRules(List<String> rules) {
+        this.rules = rules;
     }
 }

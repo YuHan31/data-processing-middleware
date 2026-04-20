@@ -25,25 +25,10 @@ public class DataCleanServiceImpl implements IDataCleanService {
                 throw new DataCleanException("没有可清洗的数据");
             }
 
-            cleanerChain.clean(processedData);
+            cleanerChain.clean(processedData, taskContext);
 
         } catch (Exception e) {
             throw new DataCleanException("数据清洗失败: " + e.getMessage(), e);
-        }
-    }
-
-    @Override
-    public void normalize(TaskContext taskContext) {
-        try {
-            ProcessedData processedData = taskContext.getProcessedData();
-            if (processedData == null) {
-                throw new DataCleanException("没有可标准化的数据");
-            }
-
-            cleanerChain.normalize(processedData);
-
-        } catch (Exception e) {
-            throw new DataCleanException("数据标准化失败: " + e.getMessage(), e);
         }
     }
 }

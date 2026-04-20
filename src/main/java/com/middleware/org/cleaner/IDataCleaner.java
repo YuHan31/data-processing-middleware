@@ -1,26 +1,29 @@
 package com.middleware.org.cleaner;
 
-import com.middleware.org.model.DataRecord;
-import com.middleware.org.model.CleanRule;
-
-import java.util.List;
+import com.middleware.org.model.ProcessedData;
+import com.middleware.org.model.TaskContext;
 
 /**
  * 数据清洗器接口
+ * 每个 Cleaner 对应一个 ruleCode
  */
 public interface IDataCleaner {
 
     /**
-     * 清洗数据
-     * @param records 原始数据记录
-     * @param rule 清洗规则
-     * @return 清洗后的数据记录
+     * 执行清洗
+     * @param processedData 待清洗的数据
+     * @param taskContext 任务上下文（可用于获取参数）
      */
-    List<DataRecord> clean(List<DataRecord> records, CleanRule rule);
+    void clean(ProcessedData processedData, TaskContext taskContext);
 
     /**
-     * 获取清洗器名称
-     * @return 清洗器名称
+     * 返回该 Cleaner 对应的 ruleCode
+     * 必须与数据库 clean_rule.rule_code 一致
      */
-    String getCleanerName();
+    String getRuleCode();
+
+    /**
+     * 获取清洗器展示名称
+     */
+    String getName();
 }
