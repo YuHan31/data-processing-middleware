@@ -1,0 +1,25 @@
+-- 任务表
+CREATE TABLE IF NOT EXISTS `task` (
+    `id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '主键',
+    `task_id` VARCHAR(64) NOT NULL UNIQUE COMMENT '任务ID',
+    `task_name` VARCHAR(256) DEFAULT '' COMMENT '任务名称',
+    `user_id` BIGINT COMMENT '用户ID',
+    `input_file_path` VARCHAR(512) DEFAULT '' COMMENT '输入文件路径',
+    `output_file_path` VARCHAR(512) DEFAULT '' COMMENT '输出文件路径',
+    `file_type` VARCHAR(32) DEFAULT '' COMMENT '文件类型：csv/xlsx/json',
+    `output_format` VARCHAR(16) DEFAULT 'csv' COMMENT '输出格式',
+    `status` VARCHAR(32) DEFAULT 'UPLOADED' COMMENT '任务状态',
+    `original_file_name` VARCHAR(256) DEFAULT '' COMMENT '原始文件名',
+    `file_size` BIGINT DEFAULT 0 COMMENT '文件大小',
+    `upload_time` BIGINT DEFAULT 0 COMMENT '上传时间戳',
+    `start_time` DATETIME DEFAULT NULL COMMENT '开始时间',
+    `end_time` DATETIME DEFAULT NULL COMMENT '结束时间',
+    `processed_data_summary` TEXT COMMENT '处理数据摘要（JSON）',
+    `statistics` TEXT COMMENT '数据统计（JSON）',
+    `original_records` LONGTEXT COMMENT '原始数据（JSON，用于数据对比）',
+    `cleaned_records` LONGTEXT COMMENT '清洗后数据（JSON，用于数据对比）',
+    `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    INDEX `idx_user_id` (`user_id`),
+    INDEX `idx_status` (`status`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='任务表';
