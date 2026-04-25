@@ -70,6 +70,10 @@ public class TaskRepository {
         taskMapper.updateStatus(taskId, status.name());
     }
 
+    public void updateTimes(String taskId, java.time.LocalDateTime startTime, java.time.LocalDateTime endTime) {
+        taskMapper.updateTimes(taskId, startTime, endTime);
+    }
+
     public boolean exists(String taskId) {
         return taskMapper.findByTaskId(taskId) != null;
     }
@@ -154,6 +158,14 @@ public class TaskRepository {
         if (task.getStatistics() != null && !task.getStatistics().isBlank()) {
             try {
                 ctx.setStatistics(objectMapper.readValue(task.getStatistics(), DataStatistics.class));
+            } catch (Exception ignored) {}
+        }
+
+        // 反序列化 processedData（包含 recordCount，用于前端显示处理记录数）
+        if (task.getProcessedDataSummary() != null && !task.getProcessedDataSummary().isBlank()) {
+            try {
+                ProcessedData pd = objectMapper.readValue(task.getProcessedDataSummary(), ProcessedData.class);
+                ctx.setProcessedData(pd);
             } catch (Exception ignored) {}
         }
 

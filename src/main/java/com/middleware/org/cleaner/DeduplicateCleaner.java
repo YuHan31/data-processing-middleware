@@ -33,6 +33,7 @@ public class DeduplicateCleaner implements IDataCleaner {
 
         processedData.setRecords(uniqueRecords);
         processedData.setTotalCount(processedData.getTotalCount() - removedCount);
+        processedData.setRecordCount(uniqueRecords.size());
     }
 
     private String buildKey(DataRecord record) {

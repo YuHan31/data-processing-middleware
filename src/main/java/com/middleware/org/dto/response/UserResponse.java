@@ -12,4 +12,5 @@ public class UserResponse {
     private String phone;
     private String name;
     private String nickname;
+    private String role;
 }

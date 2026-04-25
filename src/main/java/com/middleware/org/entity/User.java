@@ -28,6 +28,16 @@ public class User {
 
     private String password;
 
+    /**
+     * 用户角色：USER=普通用户，ADMIN=管理员
+     */
+    private String role = "USER";
+
+    /**
+     * 账户启用状态：true=启用，false=禁用
+     */
+    private Boolean enabled = true;
+
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 

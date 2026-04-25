@@ -36,6 +36,7 @@ public class RemoveNullCleaner implements IDataCleaner {
 
         processedData.setRecords(validRecords);
         processedData.setTotalCount(processedData.getTotalCount() - removedCount);
+        processedData.setRecordCount(validRecords.size());
     }
 
     @Override

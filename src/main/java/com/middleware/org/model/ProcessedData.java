@@ -11,6 +11,7 @@ public class ProcessedData {
     private int totalCount;
     private int validCount;
     private int invalidCount;
+    private int recordCount;  // 单独存储，从 summary JSON 反序列化时不会丢失
 
     public ProcessedData() {
         this.records = new ArrayList<>();
@@ -22,10 +23,6 @@ public class ProcessedData {
 
     public void setRecords(List<DataRecord> records) {
         this.records = records;
-    }
-
-    public void addRecord(DataRecord record) {
-        this.records.add(record);
     }
 
     public int getTotalCount() {
@@ -53,6 +50,14 @@ public class ProcessedData {
     }
 
     public int getRecordCount() {
-        return records != null ? records.size() : 0;
+        return recordCount;
+    }
+
+    public void setRecordCount(int recordCount) {
+        this.recordCount = recordCount;
+    }
+
+    public void addRecord(DataRecord record) {
+        this.records.add(record);
     }
 }

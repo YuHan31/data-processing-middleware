@@ -5,7 +5,9 @@ import com.middleware.org.entity.Task;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -25,6 +27,9 @@ public interface TaskMapper extends BaseMapper<Task> {
 
     @Select("UPDATE task SET status = #{status} WHERE task_id = #{taskId}")
     void updateStatus(@Param("taskId") String taskId, @Param("status") String status);
+
+    @Select("UPDATE task SET start_time = #{startTime}, end_time = #{endTime} WHERE task_id = #{taskId}")
+    void updateTimes(@Param("taskId") String taskId, @Param("startTime") LocalDateTime startTime, @Param("endTime") LocalDateTime endTime);
 
     @Select("DELETE FROM task WHERE task_id = #{taskId}")
     void deleteByTaskId(@Param("taskId") String taskId);

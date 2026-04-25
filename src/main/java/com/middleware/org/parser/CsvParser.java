@@ -43,6 +43,7 @@ public class CsvParser implements IDataParser {
         ProcessedData processedData = new ProcessedData();
         processedData.setRecords(records);
         processedData.setTotalCount(records.size());
+        processedData.setRecordCount(records.size());
         return processedData;
     }
 

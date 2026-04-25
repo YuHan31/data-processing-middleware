@@ -53,6 +53,7 @@ public class ExcelParser implements IDataParser {
         ProcessedData processedData = new ProcessedData();
         processedData.setRecords(records);
         processedData.setTotalCount(records.size());
+        processedData.setRecordCount(records.size());
         return processedData;
     }
 

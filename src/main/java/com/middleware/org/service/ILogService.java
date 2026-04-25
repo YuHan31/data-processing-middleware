@@ -15,14 +15,29 @@ public interface ILogService {
     void info(String taskId, String message);
 
     /**
+     * 记录信息日志（带阶段）
+     */
+    void info(String taskId, String stage, String message);
+
+    /**
      * 记录警告日志
      */
     void warn(String taskId, String message);
 
     /**
+     * 记录警告日志（带阶段）
+     */
+    void warn(String taskId, String stage, String message);
+
+    /**
      * 记录错误日志（同时记录友好提示给用户）
      */
     void error(String taskId, String systemMessage, String userMessage);
+
+    /**
+     * 记录错误日志（带阶段）
+     */
+    void error(String taskId, String stage, String systemMessage, String userMessage);
 
     /**
      * 记录错误日志（原始重载兼容）
