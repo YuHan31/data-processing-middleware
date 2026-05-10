@@ -8,6 +8,7 @@ import com.middleware.org.dto.StageDTO;
 import com.middleware.org.model.TaskProgress;
 import com.middleware.org.progress.ProgressService;
 import com.middleware.org.service.DataCompareService;
+import com.middleware.org.service.ICleanRuleService;
 import com.middleware.org.service.ITaskFlowControlService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -36,6 +37,9 @@ public class TaskController {
 
     @Autowired
     private DataCompareService dataCompareService;
+
+    @Autowired
+    private ICleanRuleService cleanRuleService;
 
     /**
      * 创建任务
@@ -197,9 +201,39 @@ public class TaskController {
             data.put("message", progress != null ? progress.getMessage() : "");
             data.put("status", currentStatus != null ? currentStatus.name() : "");
             data.put("stages", stages);
+            data.put("rules", cleanRuleService.getTaskRuleCodes(taskId));
             return Result.success(data);
         } catch (Exception e) {
             return Result.fail("获取任务进度失败: " + e.getMessage());
+        }
+    }
+
+    /**
+     * 获取任务关联的清洗规则
+     * GET /api/task/rules/{taskId}
+     */
+    @Operation(summary = "获取任务清洗规则", description = "获取当前用户指定任务使用的清洗规则")
+    @GetMapping("/rules/{taskId}")
+    public Result<List<String>> getTaskRules(
+            @Parameter(description = "任务ID") @PathVariable String taskId,
+            HttpSession session) {
+        try {
+            Long userId = (Long) session.getAttribute("userId");
+            if (userId == null) {
+                return Result.fail(401, "用户未登录");
+            }
+
+            TaskContext ctx = taskService.getTaskContext(taskId);
+            if (ctx == null) {
+                return Result.fail(404, "任务不存在: " + taskId);
+            }
+            if (!userId.equals(ctx.getUserId())) {
+                return Result.fail(403, "无权访问该任务");
+            }
+
+            return Result.success(cleanRuleService.getTaskRuleCodes(taskId));
+        } catch (Exception e) {
+            return Result.fail("获取任务规则失败: " + e.getMessage());
         }
     }
 

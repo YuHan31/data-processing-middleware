@@ -2,6 +2,7 @@ package com.middleware.org.repository;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.middleware.org.entity.TaskCleanRule;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -23,6 +24,6 @@ public interface TaskCleanRuleRepository extends BaseMapper<TaskCleanRule> {
     /**
      * 删除任务关联的所有规则
      */
-    @Select("DELETE FROM task_clean_rule WHERE task_id = #{taskId}")
+    @Delete("DELETE FROM task_clean_rule WHERE task_id = #{taskId}")
     void deleteByTaskId(@Param("taskId") String taskId);
 }

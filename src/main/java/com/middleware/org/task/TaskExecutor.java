@@ -15,7 +15,9 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 任务执行器
@@ -69,7 +71,7 @@ public class TaskExecutor {
             logService.info(taskId, "CLEANING", "数据清洗完成");
 
             // 保存清洗后数据
-            taskContext.setCleanedRecords(new ArrayList<>(taskContext.getProcessedData().getRecords()));
+            taskContext.setCleanedRecords(deepCopyRecords(taskContext.getProcessedData().getRecords()));
 
             // 持久化 processedData / originalRecords / cleanedRecords 到数据库
             taskRepository.save(taskContext);
@@ -123,6 +125,22 @@ public class TaskExecutor {
 
     private List<DataRecord> deepCopyRecords(List<DataRecord> original) {
         if (original == null) return new ArrayList<>();
-        return new ArrayList<>(original);
+        List<DataRecord> copy = new ArrayList<>(original.size());
+        for (DataRecord record : original) {
+            if (record == null) {
+                copy.add(null);
+                continue;
+            }
+            Map<String, Object> fields = record.getFields() == null
+                    ? new HashMap<>()
+                    : new HashMap<>(record.getFields());
+            DataRecord copiedRecord = new DataRecord(fields);
+            copiedRecord.setRecordId(record.getRecordId());
+            copiedRecord.setSourceType(record.getSourceType());
+            copiedRecord.setTimestamp(record.getTimestamp());
+            copiedRecord.setValid(record.isValid());
+            copy.add(copiedRecord);
+        }
+        return copy;
     }
 }
