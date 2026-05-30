@@ -11,10 +11,10 @@ spring:
 
   # 数据库配置
   datasource:
-    url: jdbc:mysql://localhost:3306/middleware_db?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
-    username: root
-    password: 12344321
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: @dm.datasource.url@
+    username: @dm.datasource.username@
+    password: @dm.datasource.password@
+    driver-class-name: @dm.datasource.driver@
 
   # 文件上传配置
   servlet:

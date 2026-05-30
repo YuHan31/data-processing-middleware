@@ -1,6 +1,8 @@
 package com.middleware.org.util;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 /**
@@ -25,5 +27,9 @@ public class DateUtil {
 
     public static String getCurrentDateTime() {
         return formatNow();
+    }
+
+    public static LocalDateTime nowSecond() {
+        return LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
     }
 }

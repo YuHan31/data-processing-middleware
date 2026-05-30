@@ -15,10 +15,12 @@ public class SystemLog {
     @TableId(type = IdType.AUTO)
     private Long id;
 
+    @TableField("log_level")
     private String level;      // INFO, WARN, ERROR
     private String message;    // 系统原始日志
     private String userMessage; // 用户友好提示
     private String taskId;
+    @TableField("log_timestamp")
     private Long timestamp;
     private String stage;      // PARSE, CLEAN, EXPORT
     private String exceptionMessage;

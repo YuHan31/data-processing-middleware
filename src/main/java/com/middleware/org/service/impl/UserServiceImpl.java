@@ -6,6 +6,7 @@ import com.middleware.org.dto.request.ResetPasswordRequest;
 import com.middleware.org.entity.User;
 import com.middleware.org.repository.UserRepository;
 import com.middleware.org.service.IUserService;
+import com.middleware.org.util.DateUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -57,8 +58,9 @@ public class UserServiceImpl implements IUserService {
         user.setName(request.getName());
         user.setNickname(request.getNickname());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setCreateTime(LocalDateTime.now());
-        user.setUpdatedAt(LocalDateTime.now());
+        LocalDateTime now = DateUtil.nowSecond();
+        user.setCreateTime(now);
+        user.setUpdatedAt(now);
         userRepository.insert(user);
 
         log.info("用户注册成功: {}", request.getAccount());

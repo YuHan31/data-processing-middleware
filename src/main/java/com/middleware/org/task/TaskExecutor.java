@@ -7,6 +7,7 @@ import com.middleware.org.progress.ProgressService;
 import com.middleware.org.repository.TaskRepository;
 import com.middleware.org.service.*;
 import com.middleware.org.statistics.StatisticsService;
+import com.middleware.org.util.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +54,7 @@ public class TaskExecutor {
         String taskId = taskContext.getTaskId();
 
         try {
-            taskContext.setStartTime(LocalDateTime.now());
+            taskContext.setStartTime(DateUtil.nowSecond());
             taskRepository.updateTimes(taskId, taskContext.getStartTime(), null);
             logService.info(taskId, "PARSING", "任务开始执行");
 
@@ -86,13 +87,13 @@ public class TaskExecutor {
             logService.info(taskId, "EXPORTING", "数据导出完成");
 
             // 5. 任务完成
-            taskContext.setEndTime(LocalDateTime.now());
+            taskContext.setEndTime(DateUtil.nowSecond());
             taskRepository.updateTimes(taskId, taskContext.getStartTime(), taskContext.getEndTime());
             updateTaskStatus(taskContext, TaskStatus.FINISHED);
             logService.info(taskId, "FINISHED", "任务执行成功");
 
         } catch (Exception e) {
-            taskContext.setEndTime(LocalDateTime.now());
+            taskContext.setEndTime(DateUtil.nowSecond());
             taskRepository.updateTimes(taskId, taskContext.getStartTime(), taskContext.getEndTime());
             updateTaskStatus(taskContext, TaskStatus.FAILED);
 

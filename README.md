@@ -61,7 +61,8 @@
 ## 技术栈
 
 - **开发语言**: Java 17
-- **开发框架**: Spring Boot 2.3.12
+- **开发框架**: Spring Boot 2.7.18
+- **数据库**: 达梦数据库 DM8
 - **API文档**: Springdoc OpenAPI 1.6.15 (Swagger)
 - **数据解析**: Apache POI 5.2.3 (Excel), Jackson (JSON)
 - **日志框架**: Log4j2 2.17.1
@@ -76,7 +77,29 @@
 mvn clean package
 ```
 
-### 2. 启动应用
+### 2. 初始化达梦数据库
+
+默认应用连接信息见 `src/main/resources/application.yml`：
+
+```yaml
+url: jdbc:dm://localhost:5236?schema=MIDDLEWARE_DB
+username: SYSDBA
+password: 12344321
+```
+
+如果 SYSDBA 还没有改成上述密码，先用当前 SYSDBA 密码登录后执行：
+
+```sql
+ALTER USER SYSDBA IDENTIFIED BY "12344321";
+```
+
+然后用 `SYSDBA` 用户登录执行表结构和基础数据脚本。脚本会创建并切换到 `MIDDLEWARE_DB` 模式：
+
+```sql
+sql/dm_schema_init.sql
+```
+
+### 3. 启动应用
 
 **方式1：使用启动脚本**
 ```bash
@@ -93,11 +116,11 @@ java -jar target/data-processing-middleware-1.0-SNAPSHOT.jar
 mvn spring-boot:run
 ```
 
-### 3. 访问系统
+### 4. 访问系统
 
 应用启动后访问：**http://localhost:8080**
 
-### 4. 访问Swagger API文档
+### 5. 访问Swagger API文档
 
 应用启动后访问：**http://localhost:8080/swagger-ui.html**
 

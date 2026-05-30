@@ -20,6 +20,10 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <dm.datasource.url>jdbc:dm://localhost:5236?schema=MIDDLEWARE_DB</dm.datasource.url>
+        <dm.datasource.username>SYSDBA</dm.datasource.username>
+        <dm.datasource.password>12344321</dm.datasource.password>
+        <dm.datasource.driver>dm.jdbc.driver.DmDriver</dm.datasource.driver>
     </properties>
 
     <dependencies>
@@ -93,11 +97,11 @@
             <version>3.5.3.1</version>
         </dependency>
 
-        <!-- MySQL Driver -->
+        <!-- Dameng Database Driver -->
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.33</version>
+            <groupId>com.dameng</groupId>
+            <artifactId>DmJdbcDriver18</artifactId>
+            <version>8.1.3.140</version>
         </dependency>
 
         <!-- Spring Security (仅用于BCrypt) -->
@@ -108,6 +112,13 @@
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
         <plugins>
             <!-- 编译插件，确保使用 Java 17 编译 -->
             <plugin>

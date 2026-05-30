@@ -4,6 +4,7 @@ import com.middleware.org.entity.SystemLog;
 import com.middleware.org.model.LogEntry;
 import com.middleware.org.repository.SystemLogRepository;
 import com.middleware.org.service.ILogService;
+import com.middleware.org.util.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,7 +106,7 @@ public class LogServiceImpl implements ILogService {
         systemLog.setStage(entry.getStage());
         systemLog.setExceptionMessage(entry.getExceptionMessage());
         systemLog.setStackTrace(entry.getStackTrace());
-        systemLog.setCreateTime(LocalDateTime.now());
+        systemLog.setCreateTime(DateUtil.nowSecond());
         systemLogRepository.insert(systemLog);
     }
 

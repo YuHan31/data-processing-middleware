@@ -20,6 +20,7 @@ import com.middleware.org.repository.TaskRepository;
 import com.middleware.org.repository.UserRepository;
 import com.middleware.org.service.IAdminService;
 import com.middleware.org.service.ILogService;
+import com.middleware.org.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -99,7 +100,7 @@ public class AdminServiceImpl implements IAdminService {
         User user = userRepository.selectById(userId);
         if (user != null) {
             user.setEnabled(!user.getEnabled());
-            user.setUpdatedAt(LocalDateTime.now());
+            user.setUpdatedAt(DateUtil.nowSecond());
             userRepository.updateById(user);
         }
     }
@@ -296,7 +297,7 @@ public class AdminServiceImpl implements IAdminService {
         if (request.getDisplayOrder() != null) {
             rule.setDisplayOrder(request.getDisplayOrder());
         }
-        rule.setUpdateTime(LocalDateTime.now());
+        rule.setUpdateTime(DateUtil.nowSecond());
         cleanRuleRepository.updateById(rule);
     }
 
@@ -306,7 +307,7 @@ public class AdminServiceImpl implements IAdminService {
         CleanRule rule = cleanRuleRepository.selectById(id);
         if (rule != null) {
             rule.setEnabled(!rule.getEnabled());
-            rule.setUpdateTime(LocalDateTime.now());
+            rule.setUpdateTime(DateUtil.nowSecond());
             cleanRuleRepository.updateById(rule);
         }
     }

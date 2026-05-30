@@ -40,6 +40,7 @@ public class CleanRule {
     /**
      * 级别：basic / advanced
      */
+    @TableField("rule_level")
     private String level = "basic";
 
     /**
