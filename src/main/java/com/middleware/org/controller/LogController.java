@@ -1,7 +1,9 @@
 package com.middleware.org.controller;
 
 import com.middleware.org.common.Result;
+import com.middleware.org.model.TaskContext;
 import com.middleware.org.service.ILogService;
+import com.middleware.org.service.ITaskFlowControlService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -23,6 +25,9 @@ public class LogController {
     @Autowired
     private ILogService logService;
 
+    @Autowired
+    private ITaskFlowControlService taskService;
+
     /**
      * 获取任务失败原因
      * GET /api/log/{taskId}/reason
@@ -37,6 +42,14 @@ public class LogController {
         Long userId = (Long) session.getAttribute("userId");
         if (userId == null) {
             return Result.fail(401, "用户未登录");
+        }
+
+        TaskContext ctx = taskService.getTaskContext(taskId);
+        if (ctx == null) {
+            return Result.fail(404, "任务不存在: " + taskId);
+        }
+        if (!userId.equals(ctx.getUserId())) {
+            return Result.fail(403, "无权访问该任务");
         }
 
         String reason = logService.getTaskErrorReason(taskId);

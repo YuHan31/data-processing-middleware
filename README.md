@@ -271,9 +271,9 @@ GET /api/file/download/{taskId}
 
 ### 日志管理接口
 
-#### 查询任务日志
+#### 查询任务失败原因
 ```http
-GET /api/log/{taskId}
+GET /api/log/{taskId}/reason
 ```
 
 **响应示例**:
@@ -282,14 +282,7 @@ GET /api/log/{taskId}
   "code": 200,
   "message": "success",
   "data": {
-    "logs": [
-      {
-        "level": "INFO",
-        "message": "任务开始执行",
-        "timestamp": 1234567890
-      }
-    ],
-    "total": 10
+    "reason": "数据格式解析失败，请检查文件格式"
   }
 }
 ```
@@ -315,8 +308,8 @@ curl -X POST http://localhost:8080/api/task/start/TASK-12345678
 # 3. 查询进度
 curl http://localhost:8080/api/task/status/TASK-12345678
 
-# 4. 查询日志
-curl http://localhost:8080/api/log/TASK-12345678
+# 4. 查询任务失败原因
+curl http://localhost:9999/api/log/TASK-12345678/reason
 ```
 
 ### 示例2：上传文件并处理
